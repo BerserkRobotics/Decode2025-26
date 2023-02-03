@@ -36,7 +36,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import java.util.ArrayList;
 
 @Autonomous
-class PreloadPark extends LinearOpMode
+public class PlaceConeAndPark extends LinearOpMode
 {   
     //INTRODUCE VARIABLES HERE
     private DcMotor BackLeft;

@@ -36,7 +36,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import java.util.ArrayList;
 
 @Autonomous
-class ZonePark extends LinearOpMode
+public class ZonePark extends LinearOpMode
 {   
     //INTRODUCE VARIABLES HERE
     private DcMotor BackLeft;
@@ -226,17 +226,39 @@ class ZonePark extends LinearOpMode
             Rservoram.setPosition(0.25);
             sleep(1000);
 
-            // Strafe right
+            // Forward
+            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+            BackLeft.setTargetPosition(150);
+            BackRight.setTargetPosition(150);
+            FrontLeft.setTargetPosition(150);
+            FrontRight.setTargetPosition(150);
+
+            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            BackLeft.setPower(1);
+            BackRight.setPower(1);
+            FrontLeft.setPower(1);
+            FrontRight.setPower(1);
+            sleep(1000);
+
+            // Strafe left
 
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-            BackLeft.setTargetPosition(-300);
-            BackRight.setTargetPosition(300);
-            FrontLeft.setTargetPosition(300);
-            FrontRight.setTargetPosition(-300);
+            BackLeft.setTargetPosition(1200);
+            BackRight.setTargetPosition(-1200);
+            FrontLeft.setTargetPosition(-1200);
+            FrontRight.setTargetPosition(1200);
 
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -256,10 +278,10 @@ class ZonePark extends LinearOpMode
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-            BackLeft.setTargetPosition(200);
-            BackRight.setTargetPosition(200);
-            FrontLeft.setTargetPosition(200);
-            FrontRight.setTargetPosition(200);
+            BackLeft.setTargetPosition(1168);
+            BackRight.setTargetPosition(1168);
+            FrontLeft.setTargetPosition(1168);
+            FrontRight.setTargetPosition(1168);
 
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -272,17 +294,17 @@ class ZonePark extends LinearOpMode
             FrontRight.setPower(1);
             sleep(1000);
 
-            // Turn Clockwise
+            // Backwards
 
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-            BackLeft.setTargetPosition(750);
-            BackRight.setTargetPosition(-750);
-            FrontLeft.setTargetPosition(750);
-            FrontRight.setTargetPosition(-750);
+            BackLeft.setTargetPosition(-100);
+            BackRight.setTargetPosition(-100);
+            FrontLeft.setTargetPosition(-100);
+            FrontRight.setTargetPosition(-100);
 
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -293,164 +315,7 @@ class ZonePark extends LinearOpMode
             BackRight.setPower(1);
             FrontLeft.setPower(1);
             FrontRight.setPower(1);
-            sleep(1000);
-
-            // Left to medium junction
-
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-            BackLeft.setTargetPosition(1900);
-            BackRight.setTargetPosition(-1900);
-            FrontLeft.setTargetPosition(-1900);
-            FrontRight.setTargetPosition(1900);
-
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
-
-            //Raise arm
-
-            sleep(1000);
-            bottomMotor.setTargetPosition(1280);
-            topMotor.setTargetPosition(1280);
-            bottomMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            topMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            bottomMotor.setPower(1);
-            topMotor.setPower(1);
-
-            sleep(500);
-            Rservoram.setPosition(0.4);
-            Lservoarm.setPosition(0.4);
-
-            bottomMotor.setTargetPosition(1280);
-            topMotor.setTargetPosition(1280);
-            bottomMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            topMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            bottomMotor.setPower(1);
-            topMotor.setPower(1);
-            sleep(500);
-
-            Rservoram.setPosition(0.4);
-            Lservoarm.setPosition(0.4);
-            sleep(1000);
-
-            //Forward
-
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-            BackLeft.setTargetPosition(230);
-            BackRight.setTargetPosition(230);
-            FrontLeft.setTargetPosition(230);
-            FrontRight.setTargetPosition(230);
-
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
-            sleep(1000);
-
-            //Drop and lower arm
-
-            LClaw.setPosition(0.1);
-            sleep(500);
-
-            Lservoarm.setPosition(0);
-            Rservoram.setPosition(0);
-            sleep(500);
-
-            bottomMotor.setTargetPosition(0);
-            topMotor.setTargetPosition(0);
-            bottomMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            topMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            bottomMotor.setPower(1);
-            topMotor.setPower(1);
-            sleep(1000);
-
-            //Backwards
-
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-            BackLeft.setTargetPosition(-230);
-            BackRight.setTargetPosition(-230);
-            FrontLeft.setTargetPosition(-230);
-            FrontRight.setTargetPosition(-230);
-
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
-            sleep(1000);
-
-            //Strafe left
-
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-            BackLeft.setTargetPosition(550);
-            BackRight.setTargetPosition(-550);
-            FrontLeft.setTargetPosition(-550);
-            FrontRight.setTargetPosition(550);
-
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
-            sleep(1000);
-
-            //Backwards
-
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-            BackLeft.setTargetPosition(-1080);
-            BackRight.setTargetPosition(-1050);
-            FrontLeft.setTargetPosition(-1080);
-            FrontRight.setTargetPosition(-1050);
-
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
-            sleep(3000000);
+            sleep(30000);
 
         } else if (tagOfInterest.id == 3) {
             // Zone 3
@@ -461,29 +326,6 @@ class ZonePark extends LinearOpMode
             Rservoram.setPosition(0.25);
             sleep(1000);
 
-            //Strafe right
-
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-            BackLeft.setTargetPosition(-300);
-            BackRight.setTargetPosition(300);
-            FrontLeft.setTargetPosition(300);
-            FrontRight.setTargetPosition(-300);
-
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
-            sleep(1000);
-
             //Forward
 
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -491,10 +333,10 @@ class ZonePark extends LinearOpMode
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-            BackLeft.setTargetPosition(230);
-            BackRight.setTargetPosition(230);
-            FrontLeft.setTargetPosition(230);
-            FrontRight.setTargetPosition(230);
+            BackLeft.setTargetPosition(150);
+            BackRight.setTargetPosition(150);
+            FrontLeft.setTargetPosition(150);
+            FrontRight.setTargetPosition(150);
 
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -507,17 +349,17 @@ class ZonePark extends LinearOpMode
             FrontRight.setPower(1);
             sleep(1000);
 
-            //Turn clockwise
+            // Strafe right
 
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-            BackLeft.setTargetPosition(750);
-            BackRight.setTargetPosition(-750);
-            FrontLeft.setTargetPosition(750);
-            FrontRight.setTargetPosition(-750);
+            BackLeft.setTargetPosition(-1400);
+            BackRight.setTargetPosition(1400);
+            FrontLeft.setTargetPosition(1400);
+            FrontRight.setTargetPosition(-1400);
 
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -530,17 +372,17 @@ class ZonePark extends LinearOpMode
             FrontRight.setPower(1);
             sleep(1000);
 
-            //Strafe left
+            // Forward
 
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-            BackLeft.setTargetPosition(1900);
-            BackRight.setTargetPosition(-1900);
-            FrontLeft.setTargetPosition(-1900);
-            FrontRight.setTargetPosition(1900);
+            BackLeft.setTargetPosition(1168);
+            BackRight.setTargetPosition(1168);
+            FrontLeft.setTargetPosition(1168);
+            FrontRight.setTargetPosition(1168);
 
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -553,285 +395,7 @@ class ZonePark extends LinearOpMode
             FrontRight.setPower(1);
             sleep(1000);
 
-            //Arm up
-
-            bottomMotor.setTargetPosition(1280);
-            topMotor.setTargetPosition(1280);
-            bottomMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            topMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            bottomMotor.setPower(1);
-            topMotor.setPower(1);
-            sleep(500);
-
-            Rservoram.setPosition(0.4);
-            Lservoarm.setPosition(0.4);
-            sleep(1000);
-
-            //Forward
-
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-            BackLeft.setTargetPosition(230);
-            BackRight.setTargetPosition(230);
-            FrontLeft.setTargetPosition(230);
-            FrontRight.setTargetPosition(230);
-
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
-            sleep(1000);
-
-            //Drop and lower arm
-
-            LClaw.setPosition(0.1);
-            sleep(500);
-
-            Lservoarm.setPosition(0);
-            Rservoram.setPosition(0);
-            sleep(500);
-
-            bottomMotor.setTargetPosition(0);
-            topMotor.setTargetPosition(0);
-            bottomMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            topMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            bottomMotor.setPower(1);
-            topMotor.setPower(1);
-            sleep(1000);
-
-            //Backwards
-
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-            BackLeft.setTargetPosition(-230);
-            BackRight.setTargetPosition(-230);
-            FrontLeft.setTargetPosition(-230);
-            FrontRight.setTargetPosition(-230);
-
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
-            sleep(1000);
-
-            //Strafe left
-
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-            BackLeft.setTargetPosition(700);
-            BackRight.setTargetPosition(-700);
-            FrontLeft.setTargetPosition(-700);
-            FrontRight.setTargetPosition(700);
-
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
-            sleep(1000);
-
-            //Forward
-
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-            BackLeft.setTargetPosition(900);
-            BackRight.setTargetPosition(900);
-            FrontLeft.setTargetPosition(900);
-            FrontRight.setTargetPosition(900);
-
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
-            sleep(3000000);
-
-        } else if (tagOfInterest.id == 2) {
-            // Zone 2
-            telemetry.addData("Object Detected", "2");
-
-            LClaw.setPosition(0.01);
-            Lservoarm.setPosition(0.25);
-            Rservoram.setPosition(0.25);
-            sleep(1000);
-
-            //Strafe right
-
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-            BackLeft.setTargetPosition(-300);
-            BackRight.setTargetPosition(300);
-            FrontLeft.setTargetPosition(300);
-            FrontRight.setTargetPosition(-300);
-
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
-            sleep(1000);
-
-            //Forward
-
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-            BackLeft.setTargetPosition(200);
-            BackRight.setTargetPosition(200);
-            FrontLeft.setTargetPosition(200);
-            FrontRight.setTargetPosition(200);
-
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
-            sleep(1000);
-
-            //Turn clockwise
-
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-            BackLeft.setTargetPosition(750);
-            BackRight.setTargetPosition(-750);
-            FrontLeft.setTargetPosition(750);
-            FrontRight.setTargetPosition(-750);
-
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
-            sleep(1000);
-
-            //Strafe left
-
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-            BackLeft.setTargetPosition(1900);
-            BackRight.setTargetPosition(-1900);
-            FrontLeft.setTargetPosition(-1900);
-            FrontRight.setTargetPosition(1900);
-
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
-            sleep(1000);
-
-            //Raise arm
-
-            bottomMotor.setTargetPosition(1280);
-            topMotor.setTargetPosition(1280);
-            bottomMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            topMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            bottomMotor.setPower(1);
-            topMotor.setPower(1);
-            sleep(500);
-
-            Rservoram.setPosition(0.4);
-            Lservoarm.setPosition(0.4);
-            sleep(1000);
-
-            //Forward
-
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-            BackLeft.setTargetPosition(200);
-            BackRight.setTargetPosition(200);
-            FrontLeft.setTargetPosition(200);
-            FrontRight.setTargetPosition(200);
-
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
-            sleep(1000);
-
-            //Drop and lower arm
-
-            LClaw.setPosition(0.1);
-            sleep(500);
-
-            Lservoarm.setPosition(0);
-            Rservoram.setPosition(0);
-            sleep(500);
-
-            bottomMotor.setTargetPosition(0);
-            topMotor.setTargetPosition(0);
-            bottomMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            topMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            bottomMotor.setPower(1);
-            topMotor.setPower(1);
-            sleep(1000);
-
-            //Backwards
+            // Backwards
 
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -852,7 +416,108 @@ class ZonePark extends LinearOpMode
             BackRight.setPower(1);
             FrontLeft.setPower(1);
             FrontRight.setPower(1);
+            sleep(30000);
+
+        } else if (tagOfInterest.id == 2) {
+            // Zone 2
+            telemetry.addData("Object Detected", "2");
+
+            LClaw.setPosition(0.01);
+            Lservoarm.setPosition(0.25);
+            Rservoram.setPosition(0.25);
             sleep(1000);
+
+            //Forward
+
+            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+            BackLeft.setTargetPosition(150);
+            BackRight.setTargetPosition(150);
+            FrontLeft.setTargetPosition(150);
+            FrontRight.setTargetPosition(150);
+
+            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            BackLeft.setPower(1);
+            BackRight.setPower(1);
+            FrontLeft.setPower(1);
+            FrontRight.setPower(1);
+            sleep(1000);
+
+            // Strafe right
+
+            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+            BackLeft.setTargetPosition(-1400);
+            BackRight.setTargetPosition(1400);
+            FrontLeft.setTargetPosition(1400);
+            FrontRight.setTargetPosition(-1400);
+
+            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            BackLeft.setPower(1);
+            BackRight.setPower(1);
+            FrontLeft.setPower(1);
+            FrontRight.setPower(1);
+            sleep(1000);
+
+            // Forward
+
+            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+            BackLeft.setTargetPosition(2000);
+            BackRight.setTargetPosition(2000);
+            FrontLeft.setTargetPosition(2000);
+            FrontRight.setTargetPosition(2000);
+
+            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            BackLeft.setPower(1);
+            BackRight.setPower(1);
+            FrontLeft.setPower(1);
+            FrontRight.setPower(1);
+            sleep(2000);
+
+            // Strafe left
+
+            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+            BackLeft.setTargetPosition(1300);
+            BackRight.setTargetPosition(-1300);
+            FrontLeft.setTargetPosition(-1300);
+            FrontRight.setTargetPosition(1300);
+
+            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            BackLeft.setPower(1);
+            BackRight.setPower(1);
+            FrontLeft.setPower(1);
+            FrontRight.setPower(1);
+            sleep(30000);
 
         } else {
             BackLeft.setPower(0);

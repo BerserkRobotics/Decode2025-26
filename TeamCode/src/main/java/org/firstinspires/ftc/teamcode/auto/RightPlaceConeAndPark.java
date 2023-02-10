@@ -225,6 +225,27 @@ public class RightPlaceConeAndPark extends LinearOpMode
 
             telemetry.addData("Object Detected", "1");
 
+            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+            BackLeft.setTargetPosition(300);
+            BackRight.setTargetPosition(300);
+            FrontLeft.setTargetPosition(300);
+            FrontRight.setTargetPosition(300);
+
+            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            BackLeft.setPower(1);
+            BackRight.setPower(1);
+            FrontLeft.setPower(1);
+            FrontRight.setPower(1);
+            sleep(1000);
+/*
             LClaw.setPosition(0.01);
             Lservoarm.setPosition(0.25);
             Rservoram.setPosition(0.25);
@@ -442,7 +463,7 @@ public class RightPlaceConeAndPark extends LinearOpMode
             FrontLeft.setPower(1);
             FrontRight.setPower(1);
             sleep(3000000);
-
+ */
         } else if (tagOfInterest.id == 3) {
 
 

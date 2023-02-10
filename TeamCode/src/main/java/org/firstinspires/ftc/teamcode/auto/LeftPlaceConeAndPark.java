@@ -49,7 +49,7 @@ public class LeftPlaceConeAndPark extends LinearOpMode
     private Servo Lservoarm;
     private Servo LClaw;
 
-    OpenCvCamera LCamera;
+    OpenCvCamera LWebcam;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
 
     static final double FEET_PER_METER = 3.28084;
@@ -115,16 +115,16 @@ public class LeftPlaceConeAndPark extends LinearOpMode
         FrontRight.setPower(0);
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        LCamera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        LWebcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
 
-        LCamera.setPipeline(aprilTagDetectionPipeline);
-        LCamera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
+        LWebcam.setPipeline(aprilTagDetectionPipeline);
+        LWebcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {
             @Override
             public void onOpened()
             {
-                LCamera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
+                LWebcam.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
             }
 
             @Override

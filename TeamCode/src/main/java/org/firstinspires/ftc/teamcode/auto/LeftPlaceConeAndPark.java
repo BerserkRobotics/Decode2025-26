@@ -35,8 +35,8 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
 
-@Autonomous(name = "PlaceConeAndPark", group = ".Main Auto")
-public class PlaceConeAndPark extends LinearOpMode
+@Autonomous(name = "LeftPlaceConeAndPark", group = ".Main Auto")
+public class LeftPlaceConeAndPark extends LinearOpMode
 {   
     //INTRODUCE VARIABLES HERE
     private DcMotor BackLeft;
@@ -49,7 +49,7 @@ public class PlaceConeAndPark extends LinearOpMode
     private Servo Lservoarm;
     private Servo LClaw;
 
-    OpenCvCamera camera;
+    OpenCvCamera LCamera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
 
     static final double FEET_PER_METER = 3.28084;
@@ -94,34 +94,37 @@ public class PlaceConeAndPark extends LinearOpMode
         LClaw.setDirection(Servo.Direction.FORWARD);
         Lservoarm.setDirection(Servo.Direction.FORWARD);
         Rservoram.setDirection(Servo.Direction.REVERSE);
+
         bottomMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         topMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         BackLeft.setDirection(DcMotorSimple.Direction.FORWARD);
         BackRight.setDirection(DcMotorSimple.Direction.REVERSE);
         FrontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
         FrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+
         bottomMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         topMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         BackLeft.setPower(0);
         BackRight.setPower(0);
         FrontLeft.setPower(0);
         FrontRight.setPower(0);
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        LCamera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
 
-        camera.setPipeline(aprilTagDetectionPipeline);
-        camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
+        LCamera.setPipeline(aprilTagDetectionPipeline);
+        LCamera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {
             @Override
             public void onOpened()
             {
-                camera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
+                LCamera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
             }
 
             @Override
@@ -130,6 +133,7 @@ public class PlaceConeAndPark extends LinearOpMode
 
             }
         });
+
 
         telemetry.setMsTransmissionInterval(50);
 
@@ -221,6 +225,29 @@ public class PlaceConeAndPark extends LinearOpMode
 
             telemetry.addData("Object Detected", "1");
 
+            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+            BackLeft.setTargetPosition(300);
+            BackRight.setTargetPosition(300);
+            FrontLeft.setTargetPosition(300);
+            FrontRight.setTargetPosition(300);
+
+            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            BackLeft.setPower(1);
+            BackRight.setPower(1);
+            FrontLeft.setPower(1);
+            FrontRight.setPower(1);
+            sleep(1000);
+
+
+            /*
             LClaw.setPosition(0.01);
             Lservoarm.setPosition(0.25);
             Rservoram.setPosition(0.25);
@@ -438,6 +465,8 @@ public class PlaceConeAndPark extends LinearOpMode
             FrontLeft.setPower(1);
             FrontRight.setPower(1);
             sleep(3000000);
+
+            */
 
         } else if (tagOfInterest.id == 3) {
 

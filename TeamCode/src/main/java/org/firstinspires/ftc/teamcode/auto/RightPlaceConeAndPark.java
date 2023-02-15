@@ -35,7 +35,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
 
-@Autonomous(name = "RightPlaceConeAndPark", group = ".Main Auto")
+@Autonomous(name = "RightPlaceConeAndPark", group = ".Not Main Auto")
 public class RightPlaceConeAndPark extends LinearOpMode
 {
     //INTRODUCE VARIABLES HERE

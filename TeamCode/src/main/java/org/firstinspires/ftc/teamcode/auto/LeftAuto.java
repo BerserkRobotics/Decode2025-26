@@ -37,7 +37,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import java.util.ArrayList;
 
-@Autonomous
+@Autonomous(name = "LeftAuto", group = ".Main Auto")
 public class LeftAuto extends LinearOpMode
 {
     //INTRODUCE VARIABLES HERE

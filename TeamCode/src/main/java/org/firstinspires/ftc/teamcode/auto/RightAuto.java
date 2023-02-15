@@ -19,7 +19,7 @@
  * SOFTWARE.
  */
 
-package org.firstinspires.ftc.teamcode.auto;
+package org.firstinspires.ftc.teamcode.auton;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -37,7 +37,7 @@ import java.util.ArrayList;
 
 @Autonomous
 public class RightAuto extends LinearOpMode
-{
+{   
     //INTRODUCE VARIABLES HERE
     private DcMotor BackLeft;
     private DcMotor BackRight;
@@ -68,8 +68,8 @@ public class RightAuto extends LinearOpMode
     // UNITS ARE METERS
     double tagsize = 0.166;
 
-    // Tag ID 1,2,3 from the 36h11 family
-    /*EDIT IF NEEDED!!!*/
+     // Tag ID 1,2,3 from the 36h11 family 
+     /*EDIT IF NEEDED!!!*/
 
     int LEFT = 1;
     int MIDDLE = 2;
@@ -483,10 +483,10 @@ public class RightAuto extends LinearOpMode
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(2100);
-            BackRight.setTargetPosition(-2100);
-            FrontLeft.setTargetPosition(-2100);
-            FrontRight.setTargetPosition(2100);
+            BackLeft.setTargetPosition(-2100);
+            BackRight.setTargetPosition(2100);
+            FrontLeft.setTargetPosition(2100);
+            FrontRight.setTargetPosition(-2100);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -530,10 +530,10 @@ public class RightAuto extends LinearOpMode
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(0);
-            BackRight.setTargetPosition(-1300);
-            FrontLeft.setTargetPosition(-1300);
-            FrontRight.setTargetPosition(0);
+            BackLeft.setTargetPosition(-1300);
+            BackRight.setTargetPosition(0);
+            FrontLeft.setTargetPosition(0);
+            FrontRight.setTargetPosition(-1300);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -597,10 +597,10 @@ public class RightAuto extends LinearOpMode
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(0);
-            BackRight.setTargetPosition(1300);
-            FrontLeft.setTargetPosition(1300);
-            FrontRight.setTargetPosition(0);
+            BackLeft.setTargetPosition(1300);
+            BackRight.setTargetPosition(0);
+            FrontLeft.setTargetPosition(0);
+            FrontRight.setTargetPosition(1300);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -631,10 +631,10 @@ public class RightAuto extends LinearOpMode
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setTargetPosition(-300);
-            FrontRight.setTargetPosition(-300);
-            BackLeft.setTargetPosition(-300);
-            BackRight.setTargetPosition(-300);
+            BackLeft.setTargetPosition(0);
+            BackRight.setTargetPosition(-1300);
+            FrontLeft.setTargetPosition(-1300);
+            FrontRight.setTargetPosition(0);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -651,43 +651,24 @@ public class RightAuto extends LinearOpMode
             topMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             bottomMotor.setPower(0.6);
             topMotor.setPower(0.6);
-            sleep(2000);
+            sleep(1500);
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(-700);
-            BackRight.setTargetPosition(700);
-            FrontLeft.setTargetPosition(700);
-            FrontRight.setTargetPosition(-700);
-            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackLeft.setPower(0.5);
-            BackRight.setPower(0.5);
-            FrontLeft.setPower(0.5);
-            FrontRight.setPower(0.5);
-            sleep(2000);
-            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(1000);
-            BackRight.setTargetPosition(1000);
-            FrontLeft.setTargetPosition(1000);
-            FrontRight.setTargetPosition(1000);
+            FrontLeft.setTargetPosition(-800);
+            FrontRight.setTargetPosition(-800);
+            BackLeft.setTargetPosition(-800);
+            BackRight.setTargetPosition(-800);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackLeft.setPower(1);
             BackRight.setPower(1);
-            BackLeft.setPower(0.5);
-            BackRight.setPower(0.5);
-            FrontLeft.setPower(0.5);
-            FrontRight.setPower(0.5);
-            sleep(5000);
+            FrontLeft.setPower(1);
+            FrontRight.setPower(1);
+            sleep(2000);
         } else if (tagOfInterest.id == 2) {
             // Rectangle is Triangle, and Triangle is Rectangle
 
@@ -718,10 +699,10 @@ public class RightAuto extends LinearOpMode
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(2100);
-            BackRight.setTargetPosition(-2100);
-            FrontLeft.setTargetPosition(-2100);
-            FrontRight.setTargetPosition(2100);
+            BackLeft.setTargetPosition(-2100);
+            BackRight.setTargetPosition(2100);
+            FrontLeft.setTargetPosition(2100);
+            FrontRight.setTargetPosition(-2100);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -765,10 +746,10 @@ public class RightAuto extends LinearOpMode
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(0);
-            BackRight.setTargetPosition(-1300);
-            FrontLeft.setTargetPosition(-1300);
-            FrontRight.setTargetPosition(0);
+            BackLeft.setTargetPosition(-1300);
+            BackRight.setTargetPosition(0);
+            FrontLeft.setTargetPosition(0);
+            FrontRight.setTargetPosition(-1300);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -823,19 +804,19 @@ public class RightAuto extends LinearOpMode
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackLeft.setPower(1);
-            BackRight.setPower(1);
-            FrontLeft.setPower(1);
-            FrontRight.setPower(1);
+            BackLeft.setPower(0.8);
+            BackRight.setPower(0.8);
+            FrontLeft.setPower(0.8);
+            FrontRight.setPower(0.8);
             sleep(2000);
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(0);
-            BackRight.setTargetPosition(1300);
-            FrontLeft.setTargetPosition(1300);
-            FrontRight.setTargetPosition(0);
+            BackLeft.setTargetPosition(1300);
+            BackRight.setTargetPosition(0);
+            FrontLeft.setTargetPosition(0);
+            FrontRight.setTargetPosition(1300);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);

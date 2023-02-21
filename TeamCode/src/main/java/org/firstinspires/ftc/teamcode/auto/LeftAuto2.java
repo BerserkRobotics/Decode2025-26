@@ -244,7 +244,7 @@ public class LeftAuto2 extends LinearOpMode
             BackRight.setPower(0.5);
             FrontLeft.setPower(0.5);
             FrontRight.setPower(0.5);
-            sleep(500);
+            sleep(3000);
 
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -258,11 +258,11 @@ public class LeftAuto2 extends LinearOpMode
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackLeft.setPower(0.5);
-            BackRight.setPower(0.5);
-            FrontLeft.setPower(0.5);
-            FrontRight.setPower(0.5);
-            sleep(3000);
+            BackLeft.setPower(0.8);
+            BackRight.setPower(0.8);
+            FrontLeft.setPower(0.8);
+            FrontRight.setPower(0.8);
+            sleep(1000);
 
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -288,7 +288,7 @@ public class LeftAuto2 extends LinearOpMode
             topMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             bottomMotor.setPower(1);
             topMotor.setPower(1);
-            sleep(1500);
+            sleep(500);
 
             Lservoarm.setPosition(0.4);
             Rservoram.setPosition(0.4);
@@ -323,7 +323,7 @@ public class LeftAuto2 extends LinearOpMode
             Lservoarm.setPosition(0);
             Rservoram.setPosition(0);
             LClaw.setPosition(0.11);
-            sleep(2000);
+            sleep(1000);
 
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -364,7 +364,7 @@ public class LeftAuto2 extends LinearOpMode
             BackRight.setPower(1);
             FrontLeft.setPower(1);
             FrontRight.setPower(1);
-            sleep(2000);
+            sleep(1000);
 
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -382,7 +382,7 @@ public class LeftAuto2 extends LinearOpMode
             BackRight.setPower(1);
             FrontLeft.setPower(1);
             FrontRight.setPower(1);
-            sleep(2000);
+            sleep(1000);
 
             bottomMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             topMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -429,7 +429,7 @@ public class LeftAuto2 extends LinearOpMode
             Lservoarm.setPosition(0);
             Rservoram.setPosition(0);
             LClaw.setPosition(0.11);
-            sleep(2000);
+            sleep(1000);
 
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -470,7 +470,7 @@ public class LeftAuto2 extends LinearOpMode
             BackRight.setPower(1);
             FrontLeft.setPower(1);
             FrontRight.setPower(1);
-            sleep(2000);
+            sleep(1000);
 
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -488,12 +488,12 @@ public class LeftAuto2 extends LinearOpMode
             BackRight.setPower(1);
             FrontLeft.setPower(1);
             FrontRight.setPower(1);
-            sleep(2000);
+            sleep(1000);
 
             bottomMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             topMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            bottomMotor.setTargetPosition(850);
-            topMotor.setTargetPosition(850);
+            bottomMotor.setTargetPosition(800);
+            topMotor.setTargetPosition(800);
             bottomMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             topMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             bottomMotor.setPower(1);
@@ -532,7 +532,7 @@ public class LeftAuto2 extends LinearOpMode
             topMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             bottomMotor.setPower(0.6);
             topMotor.setPower(0.6);
-            sleep(2000);
+            sleep(1000);
 
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -550,7 +550,7 @@ public class LeftAuto2 extends LinearOpMode
             BackRight.setPower(1);
             FrontLeft.setPower(1);
             FrontRight.setPower(1);
-            sleep(2000);
+            sleep(1000);
 
         } else if (tagOfInterest.id == 3) {
             // Rectangle is Triangle, Triangle is Rectangle

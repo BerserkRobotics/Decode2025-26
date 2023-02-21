@@ -220,7 +220,7 @@ public class LeftAuto extends LinearOpMode
             telemetry.update();
         }
 
-        //PUT AUTON CODE HERE (DRIVER PRESSED THE PLAY BUTTON!)
+        //PUT AUTO CODE HERE (DRIVER PRESSED THE PLAY BUTTON!)
         if (tagOfInterest.id == 1) {
 
             telemetry.addData("Object Detected", "Circle");
@@ -229,6 +229,7 @@ public class LeftAuto extends LinearOpMode
             Lservoarm.setPosition(0.25);
             Rservoram.setPosition(0.25);
             sleep(100);
+
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -246,6 +247,7 @@ public class LeftAuto extends LinearOpMode
             FrontLeft.setPower(0.5);
             FrontRight.setPower(0.5);
             sleep(500);
+
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -263,6 +265,7 @@ public class LeftAuto extends LinearOpMode
             FrontLeft.setPower(0.5);
             FrontRight.setPower(0.5);
             sleep(3000);
+
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -288,11 +291,13 @@ public class LeftAuto extends LinearOpMode
             bottomMotor.setPower(1);
             topMotor.setPower(1);
             sleep(1500);
+
             Lservoarm.setPosition(0.4);
             Rservoram.setPosition(0.4);
             sleep(500);
             LClaw.setPosition(0.06);
             sleep(500);
+
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -321,6 +326,7 @@ public class LeftAuto extends LinearOpMode
             Rservoram.setPosition(0);
             LClaw.setPosition(0.11);
             sleep(2000);
+
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -343,6 +349,7 @@ public class LeftAuto extends LinearOpMode
             Lservoarm.setPosition(0.25);
             Rservoram.setPosition(0.25);
             sleep(1000);
+
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -360,6 +367,7 @@ public class LeftAuto extends LinearOpMode
             FrontLeft.setPower(1);
             FrontRight.setPower(1);
             sleep(2000);
+
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -377,6 +385,7 @@ public class LeftAuto extends LinearOpMode
             FrontLeft.setPower(1);
             FrontRight.setPower(1);
             sleep(2000);
+
             bottomMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             topMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             bottomMotor.setTargetPosition(850);
@@ -394,6 +403,7 @@ public class LeftAuto extends LinearOpMode
             Lservoarm.setPosition(0);
             Rservoram.setPosition(0);
             sleep(500);
+
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -419,6 +429,7 @@ public class LeftAuto extends LinearOpMode
             bottomMotor.setPower(0.6);
             topMotor.setPower(0.6);
             sleep(2000);
+
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -436,6 +447,7 @@ public class LeftAuto extends LinearOpMode
             FrontLeft.setPower(1);
             FrontRight.setPower(1);
             sleep(2000);
+
         } else if (tagOfInterest.id == 3) {
             // Rectangle is Triangle, Triangle is Rectangle
 

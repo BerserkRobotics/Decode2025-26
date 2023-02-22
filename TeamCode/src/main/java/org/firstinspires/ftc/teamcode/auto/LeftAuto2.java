@@ -511,8 +511,8 @@ public class LeftAuto2 extends LinearOpMode
             //Drop and reset
             bottomMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             topMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            bottomMotor.setTargetPosition(800);
-            topMotor.setTargetPosition(800);
+            bottomMotor.setTargetPosition(750);
+            topMotor.setTargetPosition(750);
             bottomMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             topMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             bottomMotor.setPower(1);

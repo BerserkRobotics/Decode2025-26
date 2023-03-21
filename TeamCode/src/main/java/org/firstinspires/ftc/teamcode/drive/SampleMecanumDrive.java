@@ -21,6 +21,7 @@ import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.hardware.IMU;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
@@ -99,10 +100,10 @@ public class SampleMecanumDrive extends MecanumDrive {
                 DriveConstants.LOGO_FACING_DIR, DriveConstants.USB_FACING_DIR));
         imu.initialize(parameters);
 
-        leftFront = hardwareMap.get(DcMotorEx.class, "FrontLeft");
-        leftRear = hardwareMap.get(DcMotorEx.class, "BackLeft");
-        rightRear = hardwareMap.get(DcMotorEx.class, "FrontRight");
-        rightFront = hardwareMap.get(DcMotorEx.class, "BackRight");
+        leftFront = hardwareMap.get(DcMotorEx.class, "Front Left");
+        leftRear = hardwareMap.get(DcMotorEx.class, "Back Left");
+        rightRear = hardwareMap.get(DcMotorEx.class, "Front Right");
+        rightFront = hardwareMap.get(DcMotorEx.class, "Back Right");
 
         motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
 
@@ -123,6 +124,11 @@ public class SampleMecanumDrive extends MecanumDrive {
         }
 
         // TODO: reverse any motors using DcMotor.setDirection()
+
+        leftRear.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftFront.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
 
         List<Integer> lastTrackingEncPositions = new ArrayList<>();
         List<Integer> lastTrackingEncVels = new ArrayList<>();

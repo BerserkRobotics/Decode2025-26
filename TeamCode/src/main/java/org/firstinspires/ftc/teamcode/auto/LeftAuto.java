@@ -41,16 +41,9 @@ import java.util.ArrayList;
 public class LeftAuto extends LinearOpMode
 {
     //INTRODUCE VARIABLES HERE
-    private DcMotor BackLeft;
-    private DcMotor BackRight;
-    private DcMotor FrontLeft;
-    private DcMotor FrontRight;
-    private DcMotor bottomMotor;
-    private DcMotor topMotor;
-    private Servo Rservoram;
-    private Servo Lservoarm;
-    private Servo LClaw;
-
+    private DcMotor BackLeft, BackRight, FrontLeft, FrontRight;
+    private DcMotor bottomMotor, topMotor;
+    private Servo Rservoram, Lservoarm, LClaw;
 
 
     OpenCvCamera camera;
@@ -98,12 +91,15 @@ public class LeftAuto extends LinearOpMode
         LClaw.setDirection(Servo.Direction.FORWARD);
         Lservoarm.setDirection(Servo.Direction.FORWARD);
         Rservoram.setDirection(Servo.Direction.REVERSE);
+
         bottomMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         topMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+
         BackLeft.setDirection(DcMotorSimple.Direction.FORWARD);
         BackRight.setDirection(DcMotorSimple.Direction.REVERSE);
         FrontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
         FrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+
         bottomMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         topMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

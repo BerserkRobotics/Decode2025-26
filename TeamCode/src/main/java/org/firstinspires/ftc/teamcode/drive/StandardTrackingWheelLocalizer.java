@@ -31,9 +31,12 @@ public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer 
     public static double WHEEL_RADIUS = 1.4; // in
     public static double GEAR_RATIO = 1; // output (wheel) speed / input (encoder) speed
 
-    //TODO: Put odometry pods/dead wheels on robot!
+    //TODO: 1) put dead wheels on robot, 2) configure them, 3) set distances here
     public static double LATERAL_DISTANCE = 10; // in; distance between the left and right wheels
     public static double FORWARD_OFFSET = 4; // in; offset of the lateral wheel
+
+    public static double X_MULTIPLIER = 1; // Multiplier in the X direction
+    public static double Y_MULTIPLIER = 1; // Multiplier in the Y direction
 
     private Encoder leftEncoder, rightEncoder, frontEncoder;
 
@@ -96,7 +99,6 @@ public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer 
                 encoderTicksToInches(rightVel),
                 encoderTicksToInches(frontVel)
 
-                // encoderTicksToInches(leftEncoder.getCorrectedVelocity()) * X_MULTIPLIER,
         );
     }
 }

@@ -93,28 +93,28 @@ public class BasicDumbCode extends LinearOpMode {//INTRODUCE VARIABLES HERE
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackLeft.setPower( ?);
-            BackRight.setPower( ?);
-            FrontLeft.setPower( ?);
-            FrontRight.setPower( ?);
+            BackLeft.setPower(?);
+            BackRight.setPower(?);
+            FrontLeft.setPower(?);
+            FrontRight.setPower(?);
 
             //Turn counter clockwise
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition( ?);
-            BackRight.setTargetPosition( ?);
-            FrontLeft.setTargetPosition( ?);
-            FrontRight.setTargetPosition( ?);
+            BackLeft.setTargetPosition(?);
+            BackRight.setTargetPosition(?);
+            FrontLeft.setTargetPosition(?);
+            FrontRight.setTargetPosition(?);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackLeft.setPower( ?);
-            BackRight.setPower( ?);
-            FrontLeft.setPower( ?);
-            FrontRight.setPower( ?);
+            BackLeft.setPower(?);
+            BackRight.setPower(?);
+            FrontLeft.setPower(?);
+            FrontRight.setPower(?);
 
             //drop purple
         }
@@ -133,10 +133,10 @@ public class BasicDumbCode extends LinearOpMode {//INTRODUCE VARIABLES HERE
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackLeft.setPower( ?);
-            BackRight.setPower( ?);
-            FrontLeft.setPower( ?);
-            FrontRight.setPower( ?);
+            BackLeft.setPower(?);
+            BackRight.setPower(?);
+            FrontLeft.setPower(?);
+            FrontRight.setPower(?);
 
             //drop purple
         }
@@ -147,36 +147,36 @@ public class BasicDumbCode extends LinearOpMode {//INTRODUCE VARIABLES HERE
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition( ?);
-            BackRight.setTargetPosition( ?);
-            FrontLeft.setTargetPosition( ?);
-            FrontRight.setTargetPosition( ?);
+            BackLeft.setTargetPosition(?);
+            BackRight.setTargetPosition(?);
+            FrontLeft.setTargetPosition(?);
+            FrontRight.setTargetPosition(?);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackLeft.setPower( ?);
-            BackRight.setPower( ?);
-            FrontLeft.setPower( ?);
-            FrontRight.setPower( ?);
+            BackLeft.setPower(?);
+            BackRight.setPower(?);
+            FrontLeft.setPower(?);
+            FrontRight.setPower(?);
 
             //Turn clockwise
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition( ?);
-            BackRight.setTargetPosition( ?);
-            FrontLeft.setTargetPosition( ?);
-            FrontRight.setTargetPosition( ?);
+            BackLeft.setTargetPosition(?);
+            BackRight.setTargetPosition(?);
+            FrontLeft.setTargetPosition(?);
+            FrontRight.setTargetPosition(?);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackLeft.setPower( ?);
-            BackRight.setPower( ?);
-            FrontLeft.setPower( ?);
-            FrontRight.setPower( ?);
+            BackLeft.setPower(?);
+            BackRight.setPower(?);
+            FrontLeft.setPower(?);
+            FrontRight.setPower(?);
 
             //drop purple
         }

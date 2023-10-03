@@ -36,7 +36,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import java.util.ArrayList;
 
 @Autonomous(name = "BasicDumbCode", group = ".Main Auto")
-public class BasicDumbCode extends LinearOpMode {//INTRODUCE VARIABLES HERE
+public class BasicDumbCode extends LinearOpMode {
     private DcMotor BackLeft;
     private DcMotor BackRight;
     private DcMotor FrontLeft;

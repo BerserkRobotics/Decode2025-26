@@ -238,7 +238,7 @@ public class BasicDumbCode extends LinearOpMode {
 
             //drop purple
         }
-        if (tagOfInterest.id == 3 /*Red_Right or Blue_Right*/) {
+        if (tagOfInterest.id == 3 /*Red_Left or Blue_Right*/) {
             telemetry.addData("Object Detected", "right");
 
             //Forward

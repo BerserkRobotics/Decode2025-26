@@ -90,7 +90,7 @@ public class basicDrive extends LinearOpMode {
                     ClawServo.setPosition(0.06);
                 }
 
-                while (gamepad1.y) {
+                if (gamepad1.y) {
 
                     ClawServo.setPosition(-0.06);
                  }

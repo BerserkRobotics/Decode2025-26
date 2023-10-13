@@ -38,9 +38,9 @@ public class Robot {
 
         // Gyro/IMU Sub System
         IMU imu = hardwareMap.get(IMU.class, "imu");
-        gyroIMU = new IMU(imu);
+        //gyroIMU = new IMU(imu);
 
         // random hardware from last year for reference
-        DcMotor bottomMotor = hardwareMap.get(DcMotor.class, "bottomMotor")
+        DcMotor bottomMotor = hardwareMap.get(DcMotor.class, "bottomMotor");
     }
 }

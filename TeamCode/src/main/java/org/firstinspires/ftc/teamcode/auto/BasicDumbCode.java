@@ -56,6 +56,9 @@ public class BasicDumbCode extends LinearOpMode {
     double cx = 402.145;
     double cy = 221.506;
 
+    // UNITS ARE METERS
+    double tagsize = 0.166;
+
     // Tag ID 1,2,3 from the 36h11 family
     /*EDIT IF NEEDED!!!*/
 
@@ -77,14 +80,18 @@ public class BasicDumbCode extends LinearOpMode {
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
 
-        camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
+        camera.setPipeline(aprilTagDetectionPipeline);
+        camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
+        {
             @Override
-            public void onOpened() {
-                camera.startStreaming(800, 448, OpenCvCameraRotation.UPRIGHT);
+            public void onOpened()
+            {
+                camera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
             }
 
             @Override
-            public void onError(int errorCode) {
+            public void onError(int errorCode)
+            {
 
             }
         });
@@ -119,7 +126,7 @@ public class BasicDumbCode extends LinearOpMode {
                 if(tagFound)
                 {
                     telemetry.addLine("Tag of interest is in sight! :)\n\nLocation data:");
-                    tagToTelemetry(tagOfInterest);
+                    //tagToTelemetry(tagOfInterest);
                 }
                 else
                 {
@@ -132,7 +139,7 @@ public class BasicDumbCode extends LinearOpMode {
                     else
                     {
                         telemetry.addLine("\nBut we HAVE seen the tag before; last seen at:");
-                        tagToTelemetry(tagOfInterest);
+                        //tagToTelemetry(tagOfInterest);
                     }
                 }
 
@@ -148,7 +155,7 @@ public class BasicDumbCode extends LinearOpMode {
                 else
                 {
                     telemetry.addLine("\nBut we HAVE seen the tag before; last seen at:");
-                    tagToTelemetry(tagOfInterest);
+                    //tagToTelemetry(tagOfInterest);
                 }
 
             }
@@ -164,7 +171,7 @@ public class BasicDumbCode extends LinearOpMode {
         if(tagOfInterest != null)
         {
             telemetry.addLine("Tag snapshot:\n");
-            tagToTelemetry(tagOfInterest);
+            //tagToTelemetry(tagOfInterest);
             telemetry.update();
         }
         else
@@ -182,36 +189,36 @@ public class BasicDumbCode extends LinearOpMode {
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(?);
-            BackRight.setTargetPosition(?);
-            FrontLeft.setTargetPosition(?);
-            FrontRight.setTargetPosition(?);
+            BackLeft.setTargetPosition(0);
+            BackRight.setTargetPosition(0);
+            FrontLeft.setTargetPosition(0);
+            FrontRight.setTargetPosition(0);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackLeft.setPower(?);
-            BackRight.setPower(?);
-            FrontLeft.setPower(?);
-            FrontRight.setPower(?);
+            BackLeft.setPower(0);
+            BackRight.setPower(0);
+            FrontLeft.setPower(0);
+            FrontRight.setPower(0);
 
             //Turn counter clockwise
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(?);
-            BackRight.setTargetPosition(?);
-            FrontLeft.setTargetPosition(?);
-            FrontRight.setTargetPosition(?);
+            BackLeft.setTargetPosition(0);
+            BackRight.setTargetPosition(0);
+            FrontLeft.setTargetPosition(0);
+            FrontRight.setTargetPosition(0);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackLeft.setPower(?);
-            BackRight.setPower(?);
-            FrontLeft.setPower(?);
-            FrontRight.setPower(?);
+            BackLeft.setPower(0);
+            BackRight.setPower(0);
+            FrontLeft.setPower(0);
+            FrontRight.setPower(0);
 
             //drop purple
         }
@@ -223,18 +230,18 @@ public class BasicDumbCode extends LinearOpMode {
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(?);
-            BackRight.setTargetPosition(?);
-            FrontLeft.setTargetPosition(?);
-            FrontRight.setTargetPosition(?);
+            BackLeft.setTargetPosition(0);
+            BackRight.setTargetPosition(0);
+            FrontLeft.setTargetPosition(0);
+            FrontRight.setTargetPosition(0);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackLeft.setPower(?);
-            BackRight.setPower(?);
-            FrontLeft.setPower(?);
-            FrontRight.setPower(?);
+            BackLeft.setPower(0);
+            BackRight.setPower(0);
+            FrontLeft.setPower(0);
+            FrontRight.setPower(0);
 
             //drop purple
         }
@@ -246,36 +253,36 @@ public class BasicDumbCode extends LinearOpMode {
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(?);
-            BackRight.setTargetPosition(?);
-            FrontLeft.setTargetPosition(?);
-            FrontRight.setTargetPosition(?);
+            BackLeft.setTargetPosition(0);
+            BackRight.setTargetPosition(0);
+            FrontLeft.setTargetPosition(0);
+            FrontRight.setTargetPosition(0);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackLeft.setPower(?);
-            BackRight.setPower(?);
-            FrontLeft.setPower(?);
-            FrontRight.setPower(?);
+            BackLeft.setPower(0);
+            BackRight.setPower(0);
+            FrontLeft.setPower(0);
+            FrontRight.setPower(0);
 
             //Turn clockwise
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(?);
-            BackRight.setTargetPosition(?);
-            FrontLeft.setTargetPosition(?);
-            FrontRight.setTargetPosition(?);
+            BackLeft.setTargetPosition(0);
+            BackRight.setTargetPosition(0);
+            FrontLeft.setTargetPosition(0);
+            FrontRight.setTargetPosition(0);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackLeft.setPower(?);
-            BackRight.setPower(?);
-            FrontLeft.setPower(?);
-            FrontRight.setPower(?);
+            BackLeft.setPower(0);
+            BackRight.setPower(0);
+            FrontLeft.setPower(0);
+            FrontRight.setPower(0);
 
             //drop purple
         }

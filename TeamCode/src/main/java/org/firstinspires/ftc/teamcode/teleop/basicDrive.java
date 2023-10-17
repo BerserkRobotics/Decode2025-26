@@ -100,6 +100,3 @@ public class basicDrive extends LinearOpMode {
         }
     }
 
-// sad :[
-// empty
-// (┬┬﹏┬┬) 👍

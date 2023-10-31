@@ -192,7 +192,7 @@ public class FtcRobotControllerActivity extends Activity
   }
 
   protected boolean serviceShouldUnbind = false;
-  protected ServiceConnection connection = new ServiceConnection() {
+  protected ServiceConnection connection = new ServiceConnection( ) {
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
       FtcRobotControllerBinder binder = (FtcRobotControllerBinder) service;

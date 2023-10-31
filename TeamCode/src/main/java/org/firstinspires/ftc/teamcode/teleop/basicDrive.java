@@ -16,7 +16,8 @@ public class basicDrive extends LinearOpMode {
     private DcMotor BackLeft;
     private Servo   ClawServo;
     private DcMotor ArmMotor;
-    private final ElapsedTime intakeTimer = new ElapsedTime();
+
+    // private final ElapsedTime intakeTimer = new ElapsedTime();
     //intakeState = IntakeState.RESTING;
 
     /**
@@ -32,8 +33,6 @@ public class basicDrive extends LinearOpMode {
         BackLeft = hardwareMap.get(DcMotor.class, "BackLeft");
         ArmMotor = hardwareMap.get(DcMotor.class, "ArmMotor");
         ClawServo = hardwareMap.get(Servo.class, "ClawServo");
-
-
 
 
         // Put initialization blocks here.

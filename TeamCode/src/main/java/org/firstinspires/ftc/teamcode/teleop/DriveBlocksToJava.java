@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name = "Drive (Blocks to Java)")
-public class drive extends LinearOpMode {
+public class DriveBlocksToJava extends LinearOpMode {
 
     private DcMotor FrontRight;
     private DcMotor BackRight;

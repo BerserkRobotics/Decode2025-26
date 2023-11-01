@@ -74,14 +74,14 @@ public class basicDrive extends LinearOpMode {
                     FrontLeft.setPower(0.5);
                     BackLeft.setPower(0.5);
                 }
-                while (gamepad1.a) {
+                if (gamepad1.a) {
 
-                    ArmMotor.setPower(0.5);
+                    ArmMotor.setTargetPosition(100);
                 }
 
-                while (gamepad1.b) {
+                if (gamepad1.b) {
 
-                    ArmMotor.setPower(-0.5);
+                    ArmMotor.setTargetPosition(-100);
                 }
 
                 if (gamepad1.x) {

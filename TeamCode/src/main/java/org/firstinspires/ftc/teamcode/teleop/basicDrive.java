@@ -17,8 +17,8 @@ public class basicDrive extends LinearOpMode {
     private Servo   ClawServo;
     private DcMotor ArmMotor;
 
-    // private final ElapsedTime intakeTimer = new ElapsedTime();
-    //intakeState = IntakeState.RESTING;
+     private final ElapsedTime intakeTimer = new ElapsedTime();
+     // intakeState = IntakeState.RESTING;
 
     /**
      * This function is executed when this Op Mode is selected from the Driver Station.
@@ -43,6 +43,12 @@ public class basicDrive extends LinearOpMode {
         BackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         ArmMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         ClawServo.setDirection(Servo.Direction.FORWARD);
+        FrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        BackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        ArmMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
 
         if (opModeIsActive()) {
             FrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

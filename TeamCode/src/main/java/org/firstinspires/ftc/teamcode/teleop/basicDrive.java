@@ -52,9 +52,6 @@ public class basicDrive extends LinearOpMode {
         ClawServo.setPosition(.1);
 
 
-
-
-
         if (opModeIsActive()) {
             FrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             BackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

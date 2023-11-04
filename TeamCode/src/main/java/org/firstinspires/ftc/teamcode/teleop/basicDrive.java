@@ -37,7 +37,7 @@ public class basicDrive extends LinearOpMode {
 
 
         // Put initialization blocks here.
-        waitForStart();
+
         FrontRight.setDirection(DcMotorSimple.Direction.FORWARD);
         BackRight.setDirection(DcMotorSimple.Direction.FORWARD);
         FrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -50,6 +50,9 @@ public class basicDrive extends LinearOpMode {
         BackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         ArmMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         ClawServo.setPosition(.1);
+
+        waitForStart();
+
 
 
 

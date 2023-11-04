@@ -17,7 +17,7 @@ public class basicDrive extends LinearOpMode {
     private Servo   ClawServo;
     private DcMotor ArmMotor;
 
-     private final ElapsedTime intakeTimer = new ElapsedTime();
+     // private final ElapsedTime intakeTimer = new ElapsedTime();
      // intakeState = IntakeState.RESTING;
 
     /**
@@ -35,6 +35,7 @@ public class basicDrive extends LinearOpMode {
         ClawServo = hardwareMap.get(Servo.class, "ClawServo");
 
 
+
         // Put initialization blocks here.
         waitForStart();
         FrontRight.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -48,6 +49,9 @@ public class basicDrive extends LinearOpMode {
         FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         BackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         ArmMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        ClawServo.setPosition(.1);
+
+
 
 
         if (opModeIsActive()) {
@@ -82,22 +86,24 @@ public class basicDrive extends LinearOpMode {
                 }
                 if (gamepad1.a) {
 
-                    ArmMotor.setTargetPosition(100);
+                    ClawServo.setPosition(0);
                 }
 
                 if (gamepad1.b) {
 
-                    ArmMotor.setTargetPosition(-100);
+                    ClawServo.setPosition(0.18);
                 }
 
                 if (gamepad1.x) {
 
-                    ClawServo.setPosition(0.06);
+                    ArmMotor.setTargetPosition(250);
+                    ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    ArmMotor.setPower(1);
                 }
 
                 if (gamepad1.y) {
 
-                    ClawServo.setPosition(-0.06);
+                    //plane
                  }
 
             telemetry.update();

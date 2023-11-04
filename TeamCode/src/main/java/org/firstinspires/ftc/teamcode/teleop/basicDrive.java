@@ -28,6 +28,8 @@ public class basicDrive extends LinearOpMode {
         double Launch_Angle;
 
         FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
+
+
         BackRight = hardwareMap.get(DcMotor.class, "BackRight");
         FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
         BackLeft = hardwareMap.get(DcMotor.class, "BackLeft");

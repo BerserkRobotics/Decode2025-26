@@ -49,10 +49,10 @@ public class BasicAutoRedLeft extends LinearOpMode {
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(120);
-            BackRight.setTargetPosition(120);
-            FrontLeft.setTargetPosition(120);
-            FrontRight.setTargetPosition(120);
+            BackLeft.setTargetPosition(1200);
+            BackRight.setTargetPosition(1200);
+            FrontLeft.setTargetPosition(1200);
+            FrontRight.setTargetPosition(1200);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);

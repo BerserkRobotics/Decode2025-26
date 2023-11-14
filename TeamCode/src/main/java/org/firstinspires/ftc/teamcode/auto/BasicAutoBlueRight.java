@@ -194,6 +194,12 @@ public class BasicAutoBlueRight extends LinearOpMode {
             //drop pxl
             ClawServo.setPosition(0.12);
 
+            //arm dwn
+            ArmMotor.setTargetPosition(0);
+            ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            ArmMotor.setPower(0.5);
+            sleep(3000);
+
 
             while (opModeIsActive()) {
                 // Put loop blocks here.

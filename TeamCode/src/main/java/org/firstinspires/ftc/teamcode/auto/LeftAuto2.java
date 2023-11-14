@@ -35,7 +35,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
 
-@Autonomous(name = "LeftAuto2", group = ".Main Auto")
+@Autonomous(name = "LeftAuto2")
 public class LeftAuto2 extends LinearOpMode
 {
     //INTRODUCE VARIABLES HERE

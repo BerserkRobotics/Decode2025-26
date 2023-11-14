@@ -35,7 +35,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
 
-@Autonomous(name = "ZonePark", group = ".Backup Auto")
+@Autonomous(name = "ZonePark")
 public class ZonePark extends LinearOpMode
 {   
     //INTRODUCE VARIABLES HERE

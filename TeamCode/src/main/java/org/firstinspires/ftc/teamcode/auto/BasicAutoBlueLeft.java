@@ -158,7 +158,6 @@ public class BasicAutoBlueLeft extends LinearOpMode {
             sleep(1000);
 
             //arm dwn
-            ArmMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             ArmMotor.setTargetPosition(0);
             ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             ArmMotor.setPower(0.3);

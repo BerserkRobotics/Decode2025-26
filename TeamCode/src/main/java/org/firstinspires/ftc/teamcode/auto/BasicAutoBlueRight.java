@@ -186,7 +186,6 @@ public class BasicAutoBlueRight extends LinearOpMode {
             sleep(1000);
 
             //arm up
-            ArmMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             ArmMotor.setTargetPosition(800);
             ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             ArmMotor.setPower(0.5);

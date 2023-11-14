@@ -43,6 +43,8 @@ public class BasicAutoBlueRight extends LinearOpMode {
         ClawServo.setPosition(0);
         waitForStart();
         if (opModeIsActive()) {
+
+            //fwd
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -60,6 +62,8 @@ public class BasicAutoBlueRight extends LinearOpMode {
             FrontLeft.setPower(0.6);
             FrontRight.setPower(0.6);
             sleep(1500);
+
+            //bk
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -77,6 +81,8 @@ public class BasicAutoBlueRight extends LinearOpMode {
             FrontLeft.setPower(0.6);
             FrontRight.setPower(0.6);
             sleep(1000);
+
+            //strafe rt
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -94,6 +100,8 @@ public class BasicAutoBlueRight extends LinearOpMode {
             FrontLeft.setPower(0.6);
             FrontRight.setPower(0.6);
             sleep(1000);
+
+            //fwd
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -111,6 +119,8 @@ public class BasicAutoBlueRight extends LinearOpMode {
             FrontLeft.setPower(0.6);
             FrontRight.setPower(0.6);
             sleep(2000);
+
+            //strafe lft
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -132,6 +142,8 @@ public class BasicAutoBlueRight extends LinearOpMode {
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             sleep(7000);
+
+            //bk
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -149,6 +161,8 @@ public class BasicAutoBlueRight extends LinearOpMode {
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             sleep(4000);
+
+            //trn to face bkboard
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -166,14 +180,22 @@ public class BasicAutoBlueRight extends LinearOpMode {
             FrontLeft.setPower(0.6);
             FrontRight.setPower(0.6);
             sleep(1000);
+
+            //make sure clw is clsd
             ClawServo.setPosition(0);
             sleep(1000);
+
+            //arm up
             ArmMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             ArmMotor.setTargetPosition(800);
             ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             ArmMotor.setPower(0.5);
             sleep(3000);
+
+            //drop pxl
             ClawServo.setPosition(0.12);
+
+
             while (opModeIsActive()) {
                 // Put loop blocks here.
             }

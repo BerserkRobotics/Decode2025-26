@@ -79,7 +79,7 @@ public class basicDrive extends LinearOpMode {
                     ClawServo.setPosition(0);
                 }
                 if (gamepad2.b) {
-                    ClawServo.setPosition(0.12);
+                    ClawServo.setPosition(0.10);
                 }
                 if (gamepad2.dpad_up) {
                     ArmMotor.setTargetPosition(800);

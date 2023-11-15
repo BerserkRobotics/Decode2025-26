@@ -181,7 +181,7 @@ public class BasicAutoBlueRight extends LinearOpMode {
             FrontRight.setPower(0.6);
             sleep(1000);
 
-            //make sure clw is clsd
+            //make sure clw is closed
             ClawServo.setPosition(0);
             sleep(1000);
 
@@ -203,8 +203,8 @@ public class BasicAutoBlueRight extends LinearOpMode {
 
             while (opModeIsActive()) {
                 // Put loop blocks here.
+                telemetry.update();
             }
-            telemetry.update();
         }
     }
 }

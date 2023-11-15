@@ -27,20 +27,28 @@ public class Robot {
         this.hardwareMap = hardwareMap;
 
         // Drive
-        DcMotorEx FrontRight = hardwareMap.get(DcMotorEx.class, "Front Right");
+        DcMotor FrontRight = hardwareMap.get(DcMotor.class, "Front Right");
         FrontRight.setDirection(DcMotorSimple.Direction.FORWARD);
-        DcMotorEx BackRight = hardwareMap.get(DcMotorEx.class, "Back Right");
+
+        DcMotor BackRight = hardwareMap.get(DcMotor.class, "Back Right");
         BackRight.setDirection(DcMotorSimple.Direction.FORWARD);
-        DcMotorEx FrontLeft = hardwareMap.get(DcMotorEx.class, "Front Left");
+
+        DcMotor FrontLeft = hardwareMap.get(DcMotor.class, "Front Left");
         FrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        DcMotorEx BackLeft = hardwareMap.get(DcMotorEx.class, "Back Left");
+
+        DcMotor BackLeft = hardwareMap.get(DcMotor.class, "Back Left");
         BackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Gyro/IMU Sub System
         IMU imu = hardwareMap.get(IMU.class, "imu");
         //gyroIMU = new IMU(imu);
 
-        // random hardware from last year for reference
-        DcMotor bottomMotor = hardwareMap.get(DcMotor.class, "bottomMotor");
+        // additional motors
+        DcMotor ArmMotor = hardwareMap.get(DcMotor.class, "ArmMotor");
+
+        // servos
+        Servo ClawServo = hardwareMap.get(Servo.class, "ClawServo");
+        Servo planeLaunch = hardwareMap.get(Servo.class, "planeLaunch");
+        Servo planeArm = hardwareMap.get(Servo.class, "planeArm");
     }
 }

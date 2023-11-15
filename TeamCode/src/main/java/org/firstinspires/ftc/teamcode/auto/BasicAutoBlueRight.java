@@ -57,10 +57,10 @@ public class BasicAutoBlueRight extends LinearOpMode {
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            BackLeft.setPower(0.6);
-            BackRight.setPower(0.6);
-            FrontLeft.setPower(0.6);
-            FrontRight.setPower(0.6);
+            BackLeft.setPower(0.4);
+            BackRight.setPower(0.4);
+            FrontLeft.setPower(0.4);
+            FrontRight.setPower(0.4);
             sleep(1500);
 
             //bk
@@ -118,7 +118,7 @@ public class BasicAutoBlueRight extends LinearOpMode {
             BackRight.setPower(0.6);
             FrontLeft.setPower(0.6);
             FrontRight.setPower(0.6);
-            sleep(2000);
+            sleep(4000);
 
             //strafe lft
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

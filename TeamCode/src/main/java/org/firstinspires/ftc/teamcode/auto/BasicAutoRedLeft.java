@@ -190,16 +190,17 @@ public class BasicAutoRedLeft extends LinearOpMode {
             ArmMotor.setTargetPosition(800);
             ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             ArmMotor.setPower(0.5);
-            sleep(3000);
+            sleep(2000);
 
             //drop pxl
             ClawServo.setPosition(0.12);
+            sleep(1000);
 
             //arm dwn
             ArmMotor.setTargetPosition(0);
             ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             ArmMotor.setPower(0.5);
-            sleep(3000);
+            sleep(1000);
 
 
             while (opModeIsActive()) {

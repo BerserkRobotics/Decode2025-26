@@ -15,7 +15,7 @@ public class basicDrive extends LinearOpMode {
     private Servo ClawServo;
     private DcMotor ArmMotor;
     private Servo planeLaunch;
-    private Servo planeArn;
+    private Servo planeArm;
 
     /**
      * This function is executed when this OpMode is selected from the Driver Station.
@@ -29,7 +29,7 @@ public class basicDrive extends LinearOpMode {
         ClawServo = hardwareMap.get(Servo.class, "ClawServo");
         ArmMotor = hardwareMap.get(DcMotor.class, "ArmMotor");
         planeLaunch = hardwareMap.get(Servo.class, "planeLaunch");
-        planeArn = hardwareMap.get(Servo.class, "planeArn");
+        planeArm = hardwareMap.get(Servo.class, "planeArn");
 
         // Put initialization blocks here.
         FrontLeft.setDirection(DcMotor.Direction.REVERSE);
@@ -69,11 +69,11 @@ public class basicDrive extends LinearOpMode {
                 if (gamepad2.dpad_left) {
                     planeLaunch.setPosition(0);
                 }
-                if (gamepad2.dpad_down) {
-                    planeArn.setPosition(0);
+                if (gamepad1.dpad_down) {
+                    planeArm.setPosition(0);
                 }
-                if (gamepad2.dpad_up) {
-                    planeArn.setPosition(0.4);
+                if (gamepad1.dpad_up) {
+                    planeArm.setPosition(0.4);
                 }
                 if (gamepad2.a) {
                     ClawServo.setPosition(0);
@@ -81,12 +81,12 @@ public class basicDrive extends LinearOpMode {
                 if (gamepad2.b) {
                     ClawServo.setPosition(0.12);
                 }
-                if (gamepad2.x) {
+                if (gamepad2.dpad_up) {
                     ArmMotor.setTargetPosition(800);
                     ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     ArmMotor.setPower(0.5);
                 }
-                if (gamepad2.y) {
+                if (gamepad2.dpad_down) {
                     ArmMotor.setTargetPosition(0);
                     ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     ArmMotor.setPower(0.3);

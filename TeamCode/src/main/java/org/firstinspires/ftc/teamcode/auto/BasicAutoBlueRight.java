@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name = "BasicAutoBlueRight", group = ".Main Auto")
+@Autonomous(name = "BasicAutoBlueRight", group = ".Main Blue Auto")
 public class BasicAutoBlueRight extends LinearOpMode {
 
     private DcMotor BackLeft;
@@ -197,7 +197,7 @@ public class BasicAutoBlueRight extends LinearOpMode {
             //arm dwn
             ArmMotor.setTargetPosition(0);
             ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            ArmMotor.setPower(0.5);
+            ArmMotor.setPower(0.3);
             sleep(3000);
 
 

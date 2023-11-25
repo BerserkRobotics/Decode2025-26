@@ -18,7 +18,7 @@ public class basicDrive extends LinearOpMode {
     private Servo planeArm;
 
     /**
-     * This function is executed when this OpMode is selected from the Driver Station.
+     * This function is executed when this OpMode is selected from the Driver Station
      */
     @Override
     public void runOpMode() {

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -90,6 +90,11 @@ public class basicDrive extends LinearOpMode {
                     ArmMotor.setTargetPosition(0);
                     ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     ArmMotor.setPower(0.3);
+                }
+                if (gamepad2.y) {
+                    ArmMotor.setTargetPosition(400);
+                    ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    ArmMotor.setPower(0.5);
                 }
                 telemetry.update();
             }

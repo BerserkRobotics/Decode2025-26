@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.hardware;
 
-// import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -9,6 +9,8 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.teamcode.util.Encoder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,20 +29,30 @@ public class Robot {
         this.hardwareMap = hardwareMap;
 
         // Drive
-        DcMotorEx FrontRight = hardwareMap.get(DcMotorEx.class, "Front Right");
+        DcMotor FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
         FrontRight.setDirection(DcMotorSimple.Direction.FORWARD);
-        DcMotorEx BackRight = hardwareMap.get(DcMotorEx.class, "Back Right");
+
+        DcMotor BackRight = hardwareMap.get(DcMotor.class, "BackRight");
         BackRight.setDirection(DcMotorSimple.Direction.FORWARD);
-        DcMotorEx FrontLeft = hardwareMap.get(DcMotorEx.class, "Front Left");
+
+        DcMotor FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
         FrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        DcMotorEx BackLeft = hardwareMap.get(DcMotorEx.class, "Back Left");
+
+        DcMotor BackLeft = hardwareMap.get(DcMotor.class, "BackLeft");
         BackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Gyro/IMU Sub System
         IMU imu = hardwareMap.get(IMU.class, "imu");
-        gyroIMU = new IMU(imu);
+        //gyroIMU = new IMU(imu);
 
-        // random hardware from last year for reference
-        DcMotor bottomMotor = hardwareMap.get(DcMotor.class, "bottomMotor")
+        // additional motors
+        DcMotor ArmMotor = hardwareMap.get(DcMotor.class, "ArmMotor");
+
+        // servos
+        Servo ClawServo = hardwareMap.get(Servo.class, "ClawServo");
+        Servo planeLaunch = hardwareMap.get(Servo.class, "planeLaunch");
+        Servo planeArm = hardwareMap.get(Servo.class, "planeArm");
+
+
     }
 }

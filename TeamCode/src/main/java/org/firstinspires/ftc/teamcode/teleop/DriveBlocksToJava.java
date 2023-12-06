@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name = "Drive (Blocks to Java)")
-public class drive extends LinearOpMode {
+public class DriveBlocksToJava extends LinearOpMode {
 
     private DcMotor FrontRight;
     private DcMotor BackRight;
@@ -198,10 +198,13 @@ public class drive extends LinearOpMode {
                     bottomMotor.setPower(1);
                     topMotor.setPower(1);
                 }
+
                 FrontRight.setPower((gamepad1.left_stick_y + gamepad1.left_stick_x) / 1);
                 BackRight.setPower((gamepad1.left_stick_y - gamepad1.left_stick_x) / 1);
                 FrontLeft.setPower((gamepad1.left_stick_y - gamepad1.left_stick_x) / 1);
                 BackLeft.setPower((gamepad1.left_stick_y + gamepad1.left_stick_x) / 1);
+
+
                 while (gamepad1.right_bumper) {
                     FrontRight.setPower(0.5);
                     BackRight.setPower(0.5);

@@ -12,11 +12,17 @@ public class basicDrive extends LinearOpMode {
     private DcMotor BackLeft;
     private DcMotor FrontRight;
     private DcMotor BackRight;
-    private DcMotor ArmMotor;
-    private DcMotor TorqueMotor;
-    private Servo planeLaunch;
-    private Servo planeArm;
-    private Servo ClawServo;
+    private DcMotor RSlideMotor; //right
+    private DcMotor LSlideMotor; //left
+    private DcMotor IntakeMotor;
+    private Servo IntakeRoller;
+    private Servo PlaneLift;
+    private Servo PlaneLaunch;
+    private Servo TClawServo; //top
+    private Servo BClawServo; //bottom
+    private Servo RArmServo; //right
+    private Servo LArmServo; //left
+
 
     /**
      * This function is executed when this OpMode is selected from the Driver Station
@@ -100,7 +106,7 @@ public class basicDrive extends LinearOpMode {
                     ArmMotor.setPower(0.3);
                 }
                 if (gamepad2.y) {
-                    ArmMotor.setTargetPosition(500);
+                    ArmMotor.setTargetPosition(490);
                     ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     ArmMotor.setPower(0.3);
                 }

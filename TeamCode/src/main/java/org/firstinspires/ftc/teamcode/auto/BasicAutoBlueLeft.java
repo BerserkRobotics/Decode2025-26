@@ -44,6 +44,7 @@ public class BasicAutoBlueLeft extends LinearOpMode {
         FrontLeft.setDirection(DcMotor.Direction.FORWARD);
         FrontRight.setDirection(DcMotor.Direction.REVERSE);
         ClawServo.setPosition(0);
+
         waitForStart();
         if (opModeIsActive()) {
 

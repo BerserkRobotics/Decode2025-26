@@ -152,14 +152,15 @@ public class BasicAutoRedLeft extends LinearOpMode {
             BackRight.setTargetPosition(-1150);
             FrontLeft.setTargetPosition(-1150);
             FrontRight.setTargetPosition(-1150);
-            BackLeft.setPower(0.6);
-            BackRight.setPower(0.6);
-            FrontLeft.setPower(0.6);
-            FrontRight.setPower(0.6);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            BackLeft.setPower(0.6);
+            BackRight.setPower(0.6);
+            FrontLeft.setPower(0.6);
+            FrontRight.setPower(0.6);
+
             sleep(4000);
 
             //trn to face bkboard

@@ -12,10 +12,17 @@ public class basicDrive extends LinearOpMode {
     private DcMotor BackLeft;
     private DcMotor FrontRight;
     private DcMotor BackRight;
-    private Servo ClawServo;
-    private DcMotor ArmMotor;
-    private Servo planeLaunch;
-    private Servo planeArm;
+    private DcMotor RSlideMotor; //right
+    private DcMotor LSlideMotor; //left
+    private DcMotor IntakeMotor;
+    private Servo IntakeRoller;
+    private Servo PlaneLift;
+    private Servo PlaneLaunch;
+    private Servo TClawServo; //top
+    private Servo BClawServo; //bottom
+    private Servo RArmServo; //right
+    private Servo LArmServo; //left
+
 
     /**
      * This function is executed when this OpMode is selected from the Driver Station
@@ -26,6 +33,7 @@ public class basicDrive extends LinearOpMode {
         BackLeft = hardwareMap.get(DcMotor.class, "BackLeft");
         FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
         BackRight = hardwareMap.get(DcMotor.class, "BackRight");
+        TorqueMotor = hardwareMap.get(DcMotor.class, "TorqueMotor");
         ClawServo = hardwareMap.get(Servo.class, "ClawServo");
         ArmMotor = hardwareMap.get(DcMotor.class, "ArmMotor");
         planeLaunch = hardwareMap.get(Servo.class, "planeLaunch");
@@ -36,24 +44,30 @@ public class basicDrive extends LinearOpMode {
         BackLeft.setDirection(DcMotor.Direction.REVERSE);
         FrontRight.setDirection(DcMotor.Direction.FORWARD);
         BackRight.setDirection(DcMotor.Direction.FORWARD);
+        TorqueMotor.setDirection(DcMotor.Direction.REVERSE);
         ClawServo.setPosition(0.1);
         FrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        TorqueMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         ArmMotor.setPower(0);
         ArmMotor.setDirection(DcMotor.Direction.FORWARD);
         ArmMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         planeLaunch.setPosition(0.6);
+
         waitForStart();
         if (opModeIsActive()) {
+
             // Put run blocks here.
             while (opModeIsActive()) {
+
                 // Put loop blocks here.
                 FrontRight.setPower(gamepad1.left_stick_y + gamepad1.left_stick_x);
                 BackRight.setPower(gamepad1.left_stick_y - gamepad1.left_stick_x);
                 FrontLeft.setPower(gamepad1.left_stick_y - gamepad1.left_stick_x);
                 BackLeft.setPower(gamepad1.left_stick_y + gamepad1.left_stick_x);
+
                 while (gamepad1.right_bumper) {
                     FrontRight.setPower(0.6);
                     BackRight.setPower(0.6);
@@ -92,12 +106,22 @@ public class basicDrive extends LinearOpMode {
                     ArmMotor.setPower(0.3);
                 }
                 if (gamepad2.y) {
-                    ArmMotor.setTargetPosition(400);
+                    ArmMotor.setTargetPosition(490);
                     ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                    ArmMotor.setPower(0.5);
+                    ArmMotor.setPower(0.3);
+                }
+                if (gamepad2.x) {
+                    TorqueMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                    TorqueMotor.setTargetPosition(2000);
+                    TorqueMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    TorqueMotor.setPower(1);
                 }
                 telemetry.update();
             }
         }
     }
 }
+
+
+
+

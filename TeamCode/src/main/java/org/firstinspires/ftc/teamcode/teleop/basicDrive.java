@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "basicDrive")
+@TeleOp(name = "BasicDrive")
 public class basicDrive extends LinearOpMode {
 
     private DcMotor FrontLeft;
@@ -29,40 +29,63 @@ public class basicDrive extends LinearOpMode {
      */
     @Override
     public void runOpMode() {
+        // motors
         FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
         BackLeft = hardwareMap.get(DcMotor.class, "BackLeft");
         FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
         BackRight = hardwareMap.get(DcMotor.class, "BackRight");
-        TorqueMotor = hardwareMap.get(DcMotor.class, "TorqueMotor");
-        ClawServo = hardwareMap.get(Servo.class, "ClawServo");
-        ArmMotor = hardwareMap.get(DcMotor.class, "ArmMotor");
-        planeLaunch = hardwareMap.get(Servo.class, "planeLaunch");
-        planeArm = hardwareMap.get(Servo.class, "planeArn");
+        RSlideMotor = hardwareMap.get(DcMotor.class, "RSlideMotor");
+        LSlideMotor = hardwareMap.get(DcMotor.class, "LSlideMotor");
+        IntakeMotor = hardwareMap.get(DcMotor.class, "IntakeMotor");
+
+        // servos
+        IntakeRoller = hardwareMap.get(Servo.class, "IntakeRoller");
+        PlaneLift = hardwareMap.get(Servo.class, "PlaneLift");
+        PlaneLaunch = hardwareMap.get(Servo.class, "PlaneLaunch");
+        TClawServo = hardwareMap.get(Servo.class, "TClawServo");
+        BClawServo = hardwareMap.get(Servo.class, "BClawServo");
+        RArmServo = hardwareMap.get(Servo.class, "RArmServo");
+        LArmServo = hardwareMap.get(Servo.class, "LArmServo");
 
         // Put initialization blocks here.
+        // TODO: edit motor directions and find positions for new motors + IntakeRoller (crservo)
+
         FrontLeft.setDirection(DcMotor.Direction.REVERSE);
         BackLeft.setDirection(DcMotor.Direction.REVERSE);
         FrontRight.setDirection(DcMotor.Direction.FORWARD);
         BackRight.setDirection(DcMotor.Direction.FORWARD);
-        TorqueMotor.setDirection(DcMotor.Direction.REVERSE);
-        ClawServo.setPosition(0.1);
+        //RSlideMotor.setDirection(DcMotor.Direction.FORWARD);
+        //LSlideMotor.setDirection(DcMotor.Direction.FORWARD);
+        //IntakeMotor.setDirection(DcMotor.Direction.FORWARD);
+        RArmServo.setDirection(Servo.Direction.REVERSE);
+        //IntakeRoller.setDirection(Servo.Direction.FORWARD);
+
+        // resting positions
+        PlaneLift.setPosition(0);
+        PlaneLaunch.setPosition(.65);
+        TClawServo.setPosition(0);
+        BClawServo.setPosition(0);
+
         FrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        TorqueMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        ArmMotor.setPower(0);
-        ArmMotor.setDirection(DcMotor.Direction.FORWARD);
-        ArmMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        planeLaunch.setPosition(0.6);
+        RSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        LSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        IntakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        RSlideMotor.setPower(0);
+        RSlideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        LSlideMotor.setPower(0);
+        LSlideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        IntakeMotor.setPower(0);
+        IntakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         waitForStart();
         if (opModeIsActive()) {
-
             // Put run blocks here.
             while (opModeIsActive()) {
 
-                // Put loop blocks here.
                 FrontRight.setPower(gamepad1.left_stick_y + gamepad1.left_stick_x);
                 BackRight.setPower(gamepad1.left_stick_y - gamepad1.left_stick_x);
                 FrontLeft.setPower(gamepad1.left_stick_y - gamepad1.left_stick_x);
@@ -80,42 +103,68 @@ public class basicDrive extends LinearOpMode {
                     FrontLeft.setPower(0.6);
                     BackLeft.setPower(0.6);
                 }
+
+                // TODO: update buttons to driver preference!
+
                 if (gamepad2.dpad_left) {
-                    planeLaunch.setPosition(0);
+                    PlaneLaunch.setPosition(0); //launches plane
                 }
                 if (gamepad1.dpad_down) {
-                    planeArm.setPosition(0);
+                    PlaneLift.setPosition(0); //resting position
                 }
                 if (gamepad1.dpad_up) {
-                    planeArm.setPosition(0.4);
+                    PlaneLift.setPosition(0.15); //launch position //TODO: test this value more
                 }
+
+                //TODO: check position (power) of CRServo IntakeRoller
+                while (gamepad1.a) {
+                    IntakeRoller.setPosition(.5);
+                }
+
                 if (gamepad2.a) {
-                    ClawServo.setPosition(0);
+                    TClawServo.setPosition(0); //open top claw
+                    BClawServo.setPosition(0); //open bottom claw
                 }
                 if (gamepad2.b) {
-                    ClawServo.setPosition(0.10);
+                    TClawServo.setPosition(.05); //close top claw
+                    BClawServo.setPosition(.05); //close bottom claw
                 }
-                if (gamepad2.dpad_up) {
-                    ArmMotor.setTargetPosition(800);
-                    ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                    ArmMotor.setPower(0.5);
+                if (gamepad2.x) { //move claw arm to intake
+                    RArmServo.setPosition(0);
+                    LArmServo.setPosition(0);
                 }
-                if (gamepad2.dpad_down) {
-                    ArmMotor.setTargetPosition(0);
-                    ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                    ArmMotor.setPower(0.3);
+                if (gamepad2.y) { //move claw arm to outtake
+                    RArmServo.setPosition(.5);
+                    LArmServo.setPosition(.5);
                 }
-                if (gamepad2.y) {
-                    ArmMotor.setTargetPosition(490);
-                    ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                    ArmMotor.setPower(0.3);
+
+                /* TODO: find target positions for slide and intake motors!!
+                if (gamepad2.dpad_up) { //raise slides
+                    RSlideMotor.setTargetPosition(800);
+                    RSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    RSlideMotor.setPower(0.5);
+
+                    LSlideMotor.setTargetPosition(800);
+                    LSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    LSlideMotor.setPower(0.5);
                 }
-                if (gamepad2.x) {
-                    TorqueMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-                    TorqueMotor.setTargetPosition(2000);
-                    TorqueMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                    TorqueMotor.setPower(1);
+                if (gamepad2.dpad_down) { //lower slides
+                    RSlideMotor.setTargetPosition(0);
+                    RSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    RSlideMotor.setPower(0.3);
+
+                    LSlideMotor.setTargetPosition(0);
+                    LSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    LSlideMotor.setPower(0.3);
                 }
+
+                if (gamepad1.dpad_left) {
+                    IntakeMotor.setTargetPosition(0);
+                    IntakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    IntakeMotor.setPower(0.5);
+                }
+                */
+
                 telemetry.update();
             }
         }

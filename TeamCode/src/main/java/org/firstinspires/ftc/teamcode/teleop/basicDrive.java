@@ -2,7 +2,9 @@ package org.firstinspires.ftc.teamcode.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name = "BasicDrive")
@@ -15,7 +17,7 @@ public class basicDrive extends LinearOpMode {
     private DcMotor RSlideMotor; //right
     private DcMotor LSlideMotor; //left
     private DcMotor IntakeMotor;
-    private Servo IntakeRoller;
+    private CRServo IntakeRoller;
     private Servo PlaneLift;
     private Servo PlaneLaunch;
     private Servo TClawServo; //top
@@ -39,7 +41,7 @@ public class basicDrive extends LinearOpMode {
         IntakeMotor = hardwareMap.get(DcMotor.class, "IntakeMotor");
 
         // servos
-        IntakeRoller = hardwareMap.get(Servo.class, "IntakeRoller");
+        IntakeRoller = hardwareMap.get(CRServo.class, "IntakeRoller");
         PlaneLift = hardwareMap.get(Servo.class, "PlaneLift");
         PlaneLaunch = hardwareMap.get(Servo.class, "PlaneLaunch");
         TClawServo = hardwareMap.get(Servo.class, "TClawServo");
@@ -54,17 +56,15 @@ public class basicDrive extends LinearOpMode {
         BackLeft.setDirection(DcMotor.Direction.REVERSE);
         FrontRight.setDirection(DcMotor.Direction.FORWARD);
         BackRight.setDirection(DcMotor.Direction.FORWARD);
-        //RSlideMotor.setDirection(DcMotor.Direction.FORWARD);
-        //LSlideMotor.setDirection(DcMotor.Direction.FORWARD);
-        //IntakeMotor.setDirection(DcMotor.Direction.FORWARD);
+        RSlideMotor.setDirection(DcMotor.Direction.FORWARD);
+        LSlideMotor.setDirection(DcMotor.Direction.REVERSE);
+        IntakeMotor.setDirection(DcMotor.Direction.FORWARD);
         RArmServo.setDirection(Servo.Direction.REVERSE);
-        //IntakeRoller.setDirection(Servo.Direction.FORWARD);
+        IntakeRoller.setDirection(CRServo.Direction.FORWARD);
 
         // resting positions
         PlaneLift.setPosition(0);
         PlaneLaunch.setPosition(.65);
-        TClawServo.setPosition(0);
-        BClawServo.setPosition(0);
 
         FrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -74,12 +74,22 @@ public class basicDrive extends LinearOpMode {
         LSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         IntakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        RSlideMotor.setPower(0);
-        RSlideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FrontRight.setPower(0);
+        BackRight.setPower(0);
+        FrontLeft.setPower(0);
+        BackLeft.setPower(0);
         LSlideMotor.setPower(0);
+        RSlideMotor.setPower(0);
+
+        TClawServo.setPosition(0);
+        BClawServo.setPosition(0);
+        LArmServo.setPosition(0.04);
+        RArmServo.setPosition(0.04);
+
+        LSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         LSlideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        IntakeMotor.setPower(0);
-        IntakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RSlideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         waitForStart();
         if (opModeIsActive()) {
@@ -117,9 +127,6 @@ public class basicDrive extends LinearOpMode {
                 }
 
                 //TODO: check position (power) of CRServo IntakeRoller
-                while (gamepad1.a) {
-                    IntakeRoller.setPosition(.5);
-                }
 
                 if (gamepad2.a) {
                     TClawServo.setPosition(0); //open top claw

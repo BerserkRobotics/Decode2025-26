@@ -65,7 +65,23 @@ public class BasicPark extends LinearOpMode {
             BackRight.setPower(0.4);
             FrontLeft.setPower(0.4);
             FrontRight.setPower(0.4);
-            sleep(1500);
+            sleep(1000);
+            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            BackLeft.setTargetPosition(-100);
+            BackRight.setTargetPosition(-100);
+            FrontLeft.setTargetPosition(100);
+            FrontRight.setTargetPosition(100);
+            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            BackLeft.setPower(0.4);
+            BackRight.setPower(0.4);
+            FrontLeft.setPower(0.4);
+            FrontRight.setPower(0.4);
 
             PlaneLift.setPosition(.15);
             sleep(1000);

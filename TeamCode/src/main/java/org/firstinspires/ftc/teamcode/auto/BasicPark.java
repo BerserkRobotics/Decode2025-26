@@ -5,27 +5,26 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name = "BasicAutoBlueLeft", group = ".Main Blue Auto")
+@Autonomous(name = "BasicPark", group = ".BackupAuto")
 public class BasicPark extends LinearOpMode {
 
-    private DcMotor ArmMotor;
     private DcMotor BackLeft;
     private DcMotor BackRight;
     private DcMotor FrontLeft;
     private DcMotor FrontRight;
-    private Servo ClawServo;
+
 
     /**
      * This function is executed when this OpMode is selected from the Driver Station.
      */
     @Override
     public void runOpMode() {
-        ArmMotor = hardwareMap.get(DcMotor.class, "ArmMotor");
+
         BackLeft = hardwareMap.get(DcMotor.class, "BackLeft");
         BackRight = hardwareMap.get(DcMotor.class, "BackRight");
         FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
         FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
-        ClawServo = hardwareMap.get(Servo.class, "ClawServo");
+
 
         // Put initialization blocks here.
 
@@ -51,10 +50,10 @@ public class BasicPark extends LinearOpMode {
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(-1000);
-            BackRight.setTargetPosition(-1000);
-            FrontLeft.setTargetPosition(1000);
-            FrontRight.setTargetPosition(1000);
+            BackLeft.setTargetPosition(-1500);
+            BackRight.setTargetPosition(-1500);
+            FrontLeft.setTargetPosition(1500);
+            FrontRight.setTargetPosition(1500);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);

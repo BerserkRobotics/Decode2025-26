@@ -116,7 +116,7 @@ public class basicDrive extends LinearOpMode {
 
                 // TODO: update buttons to driver preference!
 
-                if (gamepad2.dpad_left) {
+                if (gamepad1.dpad_right) {
                     PlaneLaunch.setPosition(0); //launches plane
                 }
                 if (gamepad1.dpad_down) {

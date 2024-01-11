@@ -12,6 +12,7 @@ public class BasicPark extends LinearOpMode {
     private DcMotor BackRight;
     private DcMotor FrontLeft;
     private DcMotor FrontRight;
+    private Servo PlaneLift;
 
 
     /**
@@ -24,6 +25,8 @@ public class BasicPark extends LinearOpMode {
         BackRight = hardwareMap.get(DcMotor.class, "BackRight");
         FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
         FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
+
+        PlaneLift = hardwareMap.get(Servo.class, "PlaneLift");
 
 
         // Put initialization blocks here.
@@ -63,6 +66,10 @@ public class BasicPark extends LinearOpMode {
             FrontLeft.setPower(0.4);
             FrontRight.setPower(0.4);
             sleep(1500);
+
+            PlaneLift.setPosition(.15);
+            sleep(1000);
+            PlaneLift.setPosition(0);
 
         }
     }

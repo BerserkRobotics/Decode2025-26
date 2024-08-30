@@ -9,8 +9,15 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
         @Override
         public void runOpMode() {
 
-            telemetry.addLine("H e l l o  W o r l d");
+            waitForStart();
+            if (opModeIsActive()) {
+
+                telemetry.addLine("H e l l o  W o r l d");
+                telemetry.update();
+
+                sleep(6000);
 
 
+            }
         }
     }

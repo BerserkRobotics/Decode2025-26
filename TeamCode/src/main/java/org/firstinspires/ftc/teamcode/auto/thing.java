@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-    @Autonomous(name = "Frbluestraferight", preselectTeleOp = "Full drive")
+    @Autonomous(name = "thing", preselectTeleOp = "Full drive")
     public class thing extends LinearOpMode {
 
         private DcMotor FrontRight;

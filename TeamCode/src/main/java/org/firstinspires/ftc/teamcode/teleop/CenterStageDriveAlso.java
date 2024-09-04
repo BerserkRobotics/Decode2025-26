@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name = "basicDrive")
-public class basicDrive extends LinearOpMode {
+public class CenterStageDriveAlso extends LinearOpMode {
 
     private DcMotor FrontRight;
     private DcMotor BackRight;

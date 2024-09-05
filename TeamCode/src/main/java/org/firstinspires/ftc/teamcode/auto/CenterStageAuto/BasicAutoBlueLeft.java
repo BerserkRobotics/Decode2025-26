@@ -5,7 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name = "BasicAutoBlueLeft", group = ".Main Blue Auto")
+@Autonomous(name = "BasicAutoBlueLeft")
+//, group = ".Main Blue Auto")
 public class BasicAutoBlueLeft extends LinearOpMode {
 
     private DcMotor ArmMotor;

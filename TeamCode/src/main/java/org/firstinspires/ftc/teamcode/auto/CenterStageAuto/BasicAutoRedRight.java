@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode.auto;
+package org.firstinspires.ftc.teamcode.auto.CenterStageAuto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name = "BasicAutoBlueLeft", group = ".Main Blue Auto")
-public class BasicAutoBlueLeft extends LinearOpMode {
+@Autonomous(name = "BasicAutoRedRight", group = ".Main Red Auto")
+public class BasicAutoRedRight extends LinearOpMode {
 
     private DcMotor ArmMotor;
     private DcMotor BackLeft;
@@ -44,7 +44,6 @@ public class BasicAutoBlueLeft extends LinearOpMode {
         FrontLeft.setDirection(DcMotor.Direction.FORWARD);
         FrontRight.setDirection(DcMotor.Direction.REVERSE);
         ClawServo.setPosition(0);
-
         waitForStart();
         if (opModeIsActive()) {
 
@@ -53,10 +52,10 @@ public class BasicAutoBlueLeft extends LinearOpMode {
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(1300);
-            BackRight.setTargetPosition(1300);
-            FrontLeft.setTargetPosition(1300);
-            FrontRight.setTargetPosition(1300);
+            BackLeft.setTargetPosition(1250);
+            BackRight.setTargetPosition(1250);
+            FrontLeft.setTargetPosition(1250);
+            FrontRight.setTargetPosition(1250);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -86,15 +85,15 @@ public class BasicAutoBlueLeft extends LinearOpMode {
             FrontRight.setPower(0.6);
             sleep(1000);
 
-            //strafe lft
+            //strafe rt
             BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(1550);
-            BackRight.setTargetPosition(-1550);
-            FrontLeft.setTargetPosition(-1550);
-            FrontRight.setTargetPosition(1550);
+            BackLeft.setTargetPosition(-1550);
+            BackRight.setTargetPosition(1550);
+            FrontLeft.setTargetPosition(1550);
+            FrontRight.setTargetPosition(-1550);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -110,10 +109,10 @@ public class BasicAutoBlueLeft extends LinearOpMode {
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(500);
-            BackRight.setTargetPosition(500);
-            FrontLeft.setTargetPosition(500);
-            FrontRight.setTargetPosition(500);
+            BackLeft.setTargetPosition(700);
+            BackRight.setTargetPosition(700);
+            FrontLeft.setTargetPosition(700);
+            FrontRight.setTargetPosition(700);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -129,10 +128,10 @@ public class BasicAutoBlueLeft extends LinearOpMode {
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            BackLeft.setTargetPosition(-1000);
-            BackRight.setTargetPosition(1000);
-            FrontLeft.setTargetPosition(-1000);
-            FrontRight.setTargetPosition(1000);
+            BackLeft.setTargetPosition(1000);
+            BackRight.setTargetPosition(-1000);
+            FrontLeft.setTargetPosition(1000);
+            FrontRight.setTargetPosition(-1000);
             BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);

@@ -46,31 +46,16 @@ public class TwoPersonDrive extends LinearOpMode {
             double back_left_power = 0;
             double back_right_power = 0;
 
-            double turnSpeed1;
-            if (gamepad1.left_bumper) {
-                turnSpeed1 = -1;
-            } else if (gamepad1.right_bumper) {
-                turnSpeed1 = 1;
-            } else {
-                turnSpeed1 = 0;
-            }
 
-            double turnSpeed2;
-            if (gamepad2.left_bumper) {
-                turnSpeed2 = -1;
-            } else if (gamepad2.right_bumper) {
-                turnSpeed2 = 1;
-            } else {
-                turnSpeed2 = 0;
-            }
+
             double moveSpeed = -gamepad1.left_stick_y;
             double strafeSpeed = gamepad1.left_stick_x;
             double speedSetter = 0.6;
 
-            front_left_power  = (-gamepad2.left_stick_y + turnSpeed2 + gamepad2.left_stick_x) * speedSetter;
-            front_right_power = (-gamepad1.left_stick_y - turnSpeed1 - gamepad1.left_stick_x) * speedSetter;
-            back_left_power   = (-gamepad2.left_stick_y + turnSpeed2 - gamepad2.left_stick_x) * speedSetter;
-            back_right_power  = (-gamepad1.left_stick_y - turnSpeed1 + gamepad1.left_stick_x) * speedSetter;
+            front_left_power  = (-gamepad2.left_stick_y + gamepad2.left_stick_x) * speedSetter;
+            front_right_power = (-gamepad1.left_stick_y - gamepad1.left_stick_x) * speedSetter;
+            back_left_power   = (-gamepad2.left_stick_y - gamepad2.left_stick_x) * speedSetter;
+            back_right_power  = (-gamepad1.left_stick_y + gamepad1.left_stick_x) * speedSetter;
 
 
             // Set motor powers

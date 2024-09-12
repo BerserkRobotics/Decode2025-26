@@ -30,9 +30,13 @@ public class MyClass {
                                 .turn(Math.toRadians(90))
                                 .build()
                 );
+
         Image img = null;
-        try { img = ImageIO.read(new File("C:\\Users\\Vanguard Robotics 2\\Documents\\into-the-deep-meepmeep-custom-field-images.webp")); }
-        catch (IOException e) {}
+        try {
+            img = ImageIO.read(new File("C:\\Users\\Vanguard Robotics 2\\Documents\\into-the-deep-meepmeep-custom-field-images.png"));
+        } catch (IOException e) {
+            e.printStackTrace(); // Print the stack trace to see what went wrong
+        }
 
         meepMeep.setBackground(img)
                 .setDarkMode(true)

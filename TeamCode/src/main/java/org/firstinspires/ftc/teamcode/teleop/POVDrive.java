@@ -3,11 +3,10 @@ package org.firstinspires.ftc.teamcode.teleop;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "mainDrive")
-public class mainDrive extends LinearOpMode {
+@TeleOp(name = "POVDrive")
+public class POVDrive extends LinearOpMode {
 
     private DcMotor FrontRight;
     private DcMotor BackRight;

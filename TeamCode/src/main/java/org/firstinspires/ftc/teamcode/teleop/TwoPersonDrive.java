@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp(name = "TwoPersonDrive")
+@TeleOp(name = "TwoPersonDrive", group = "other")
 public class TwoPersonDrive extends LinearOpMode {
 
     private DcMotor FrontRight;

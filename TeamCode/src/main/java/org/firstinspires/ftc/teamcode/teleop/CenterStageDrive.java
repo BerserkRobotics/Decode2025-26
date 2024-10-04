@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp(name = "CenterStageDrive")
+@TeleOp(name = "CenterStageDrive", group = "old")
 public class CenterStageDrive extends LinearOpMode {
 
     private DcMotor FrontRight;

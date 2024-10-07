@@ -65,13 +65,13 @@ public class TANKDrive extends LinearOpMode {
 
             double strafe;
             if (gamepad1.left_bumper) {
-                strafe = 1;
-            } else if (gamepad1.right_bumper) {
                 strafe = -1;
+            } else if (gamepad1.right_bumper) {
+                strafe = 1;
             } else {
                 strafe = 0;
             }
-            double speedSetter = 0.6;
+            double speedSetter = 1;
 
             front_left_power  = (-gamepad1.left_stick_y+strafe) * speedSetter;
             front_right_power = (-gamepad1.right_stick_y-strafe) * speedSetter;

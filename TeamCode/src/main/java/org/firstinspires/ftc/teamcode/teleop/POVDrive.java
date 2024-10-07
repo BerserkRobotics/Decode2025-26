@@ -73,7 +73,7 @@ public class POVDrive extends LinearOpMode {
             }
             double moveSpeed = -gamepad1.left_stick_y;
             double strafeSpeed = gamepad1.left_stick_x;
-            double speedSetter = 0.6;
+            double speedSetter = 1;
 
             front_left_power  = (moveSpeed + turnSpeed + strafeSpeed) * speedSetter;
             front_right_power = (moveSpeed - turnSpeed - strafeSpeed) * speedSetter;

@@ -29,8 +29,8 @@ public class POVDrive extends LinearOpMode {
     int PickupSlideTicks           = 0;
     double ClawPositionPivotOpen   = 0;
     double ClawPositionPivotClosed = 0.2;
-    double ClawPositionClosed      = 0;
-    double ClawPositionOpen        = 0;
+    double ClawPositionClosed      = 0.25;
+    double ClawPositionOpen        = 0.75;
 
     //Position for ascent slides for hanging
     int RightAscent_1st_Pos = 0;

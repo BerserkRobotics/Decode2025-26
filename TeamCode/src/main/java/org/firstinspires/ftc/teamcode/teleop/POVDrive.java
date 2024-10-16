@@ -20,7 +20,7 @@ public class POVDrive extends LinearOpMode {
     private Servo ClawPivot;
 
     //opening and closing initialization
-    boolean gamepad2_b_toggle = true;
+    boolean gamepad2_b_toggle = false;
     boolean gamepad2_b_last_press = false;
 
     //Position for slides and claw for samples/specimens
@@ -28,7 +28,7 @@ public class POVDrive extends LinearOpMode {
     int TopBucketSlideTicks        = 0;
     int PickupSlideTicks           = 0;
     double ClawPositionPivotOpen   = 0;
-    double ClawPositionPivotClosed = 0;
+    double ClawPositionPivotClosed = 0.2;
     double ClawPositionClosed      = 0;
     double ClawPositionOpen        = 0;
 
@@ -54,10 +54,10 @@ public class POVDrive extends LinearOpMode {
         ClawPivot = hardwareMap.get(Servo.class,"ClawPivot");
 
         // Set motor directions
-        FrontRight.setDirection(DcMotor.Direction.FORWARD);
-        BackRight.setDirection(DcMotor.Direction.FORWARD);
-        FrontLeft.setDirection(DcMotor.Direction.REVERSE);
-        BackLeft.setDirection(DcMotor.Direction.REVERSE);
+        FrontRight.setDirection(DcMotor.Direction.REVERSE);
+        BackRight.setDirection(DcMotor.Direction.REVERSE);
+        FrontLeft.setDirection(DcMotor.Direction.FORWARD);
+        BackLeft.setDirection(DcMotor.Direction.FORWARD);
 
         //setting right ascent behaviors
         RightAscent.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -98,9 +98,9 @@ public class POVDrive extends LinearOpMode {
             //setting movement amounts
             double turnSpeed;
             if (gamepad1.left_bumper) {
-                turnSpeed = -1;
-            } else if (gamepad1.right_bumper) {
                 turnSpeed = 1;
+            } else if (gamepad1.right_bumper) {
+                turnSpeed = -1;
             } else {
                 turnSpeed = 0;
             }

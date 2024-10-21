@@ -20,23 +20,22 @@ public class POVDrive extends LinearOpMode {
     private Servo ClawPivot;
 
     //opening and closing initialization
-    boolean gamepad2_b_toggle = false;
-    boolean gamepad2_b_last_press = false;
+    boolean gamepad2_b_toggle = true;
 
     //Position for slides and claw for samples/specimens
-    int SpecimenPlaceSlideTicks    = 0;
-    int TopBucketSlideTicks        = 0;
-    int PickupSlideTicks           = 0;
-    double ClawPositionPivotOpen   = 0;
-    double ClawPositionPivotClosed = 0.2;
-    double ClawPositionClosed      = 0.25;
+    int SpecimenPlaceSlideTicks    = 100;
+    int TopBucketSlideTicks        = 1000;
+    int PickupSlideTicks           = 1;
+    double ClawPositionPivotOpen   = .65;
+    double ClawPositionPivotClosed = 0.4;
+    double ClawPositionClosed      = 0.45;
     double ClawPositionOpen        = 0.75;
 
     //Position for ascent slides for hanging
-    int RightAscent_1st_Pos = 0;
-    int RightAscent_2nd_Pos = 10;
-    int LeftAscent_1st_Pos  = 0;
-    int LeftAscent_2nd_Pos  = 10;
+    int RightAscent_1st_Pos = 2;
+    int RightAscent_2nd_Pos = 9;
+    int LeftAscent_1st_Pos  = 2;
+    int LeftAscent_2nd_Pos  = 9;
 
     @Override
     public void runOpMode() {
@@ -63,16 +62,19 @@ public class POVDrive extends LinearOpMode {
         RightAscent.setDirection(DcMotorSimple.Direction.FORWARD);
         RightAscent.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RightAscent.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RightAscent.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         //setting left ascent behaviors
         LeftAscent.setDirection(DcMotorSimple.Direction.FORWARD);
         LeftAscent.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         LeftAscent.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        LeftAscent.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         //setting claw slides behavior
         ClawSlides.setDirection(DcMotorSimple.Direction.FORWARD);
         ClawSlides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         ClawSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        ClawSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
 
         // Set zero power behavior
@@ -121,10 +123,7 @@ public class POVDrive extends LinearOpMode {
             BackRight.setPower(back_right_power);
             BackLeft.setPower(back_left_power);
 
-            // Setting toggle for using Claw
-            if (gamepad2_b_last_press != true && gamepad2.b) {
-                gamepad2_b_toggle = !gamepad2_b_toggle;
-            }
+
 
             //Moving Claw to grab and then pull up and to open and go down
             if (gamepad2_b_toggle) {
@@ -138,20 +137,22 @@ public class POVDrive extends LinearOpMode {
             if (!gamepad2_b_toggle && ClawSlides.getTargetPosition() == 10 && !ClawSlides.isBusy()) {
                 ClawPivot.setPosition(ClawPositionPivotOpen);
             }
+            // Setting toggle for using Claw
+            if (gamepad2.b) {
+                gamepad2_b_toggle = !gamepad2_b_toggle;
+                sleep(100);
+            }
 
             //moving slides to the positions for top bucket and Specimen placing
             if (gamepad2.a) {
-                ClawSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 ClawSlides.setTargetPosition(PickupSlideTicks);
                 ClawSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 ClawSlides.setPower(1);
             } else if (gamepad2.x) {
-                ClawSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 ClawSlides.setTargetPosition(SpecimenPlaceSlideTicks);
                 ClawSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 ClawSlides.setPower(1);
             } else if (gamepad2.y) {
-                ClawSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 ClawSlides.setTargetPosition(TopBucketSlideTicks);
                 ClawSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 ClawSlides.setPower(1);
@@ -161,18 +162,15 @@ public class POVDrive extends LinearOpMode {
 
             //Ascent program to bring the ascent down if we make a mistake
             if (gamepad2.dpad_down) {
-                RightAscent.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 RightAscent.setTargetPosition(10);
                 RightAscent.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 RightAscent.setPower(1);
-                LeftAscent.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 LeftAscent.setTargetPosition(10);
                 LeftAscent.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 LeftAscent.setPower(1);
             }
             //Ascent Program to extend the slides and pull us in automatically
             if (gamepad2.dpad_up) {
-                RightAscent.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 RightAscent.setTargetPosition(RightAscent_1st_Pos);
                 RightAscent.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 RightAscent.setPower(1);
@@ -181,19 +179,13 @@ public class POVDrive extends LinearOpMode {
                 LeftAscent.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 LeftAscent.setPower(1);
                 sleep(3000);
-                RightAscent.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 RightAscent.setTargetPosition(RightAscent_2nd_Pos);
                 RightAscent.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 RightAscent.setPower(1);
-                LeftAscent.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 LeftAscent.setTargetPosition(LeftAscent_2nd_Pos);
                 LeftAscent.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 LeftAscent.setPower(1);
             }
-
-
-            //setting the b last press for gamepadb
-            gamepad2_b_last_press = gamepad2.b;
 
 
             // Update telemetry data

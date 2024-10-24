@@ -21,15 +21,20 @@ public class POVDrive extends LinearOpMode {
 
     //opening and closing initialization
     boolean gamepad2_b_toggle = true;
-
+    boolean gamepad2_y_toggle = true;
     //Position for slides and claw for samples/specimens
-    int SpecimenPlaceSlideTicks    = 100;
-    int TopBucketSlideTicks        = 1000;
-    int PickupSlideTicks           = 1;
-    double ClawPositionPivotOpen   = .65;
+    int SpecimenPlaceSlideTicks    = 900;
+    int TopBucketSlideTicks        = 2000;
+    int PickupSlideTicks           = 10;
+    double ClawPositionPivotOpen   = 0.65;
     double ClawPositionPivotClosed = 0.4;
     double ClawPositionClosed      = 0.45;
     double ClawPositionOpen        = 0.75;
+    boolean gamepad2_y_Last_press  = false;
+    boolean gamepad2_b_Last_press  = false;
+    boolean gamepad2_a_Last_press  = false;
+    int ClawslidesV                = 0;
+    boolean y_toggle               = false;
 
     //Position for ascent slides for hanging
     int RightAscent_1st_Pos = 2;
@@ -128,31 +133,55 @@ public class POVDrive extends LinearOpMode {
             //Moving Claw to grab and then pull up and to open and go down
             if (gamepad2_b_toggle) {
                 ClawGrab.setPosition(ClawPositionClosed);
-                sleep(100);
-                ClawPivot.setPosition(ClawPositionPivotClosed);
-            }
-            if (!gamepad2_b_toggle) {
+            } else if (!gamepad2_b_toggle) {
                 ClawGrab.setPosition(ClawPositionOpen);
             }
-            if (!gamepad2_b_toggle && ClawSlides.getTargetPosition() == 10 && !ClawSlides.isBusy()) {
-                ClawPivot.setPosition(ClawPositionPivotOpen);
+            if (gamepad2_y_toggle && y_toggle
+            ) {
+                ClawPivot.setPosition(ClawPositionPivotClosed + .05);
+                sleep(300);
+                ClawPivot.setPosition(ClawPositionPivotClosed + .1);
+                sleep(300);
+                ClawPivot.setPosition(ClawPositionPivotClosed + .15);
+                sleep(300);
+                ClawPivot.setPosition(ClawPositionPivotClosed + .20);
+                sleep(300);
+                ClawPivot.setPosition(ClawPositionPivotClosed + .25);
+                sleep(300);
+                y_toggle = true;
+            }
+            if (!gamepad2_y_toggle) {
+                ClawPivot.setPosition(ClawPositionPivotClosed);
+                y_toggle = false;
             }
             // Setting toggle for using Claw
-            if (gamepad2.b) {
+            if (gamepad2.b && !gamepad2_b_Last_press) {
                 gamepad2_b_toggle = !gamepad2_b_toggle;
                 sleep(100);
             }
+            if (gamepad2.y && !gamepad2_y_Last_press)  {
+                gamepad2_y_toggle = !gamepad2_y_toggle;
+                sleep(100);
+            }
+            if (gamepad2.a && !gamepad2_a_Last_press) {
+                ClawslidesV += 1;
+            } else if (ClawslidesV == 3) {
+                ClawslidesV = 0;
+            }
+            gamepad2_b_Last_press = gamepad2.b;
+            gamepad2_y_Last_press = gamepad2.y;
+            gamepad2_a_Last_press = gamepad2.a;
 
-            //moving slides to the positions for top bucket and Specimen placing
-            if (gamepad2.a) {
+//            moving slides to the positions for top bucket and Specimen placing
+            if (ClawslidesV == 0) {
                 ClawSlides.setTargetPosition(PickupSlideTicks);
                 ClawSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 ClawSlides.setPower(1);
-            } else if (gamepad2.x) {
+            } else if (ClawslidesV == 2) {
                 ClawSlides.setTargetPosition(SpecimenPlaceSlideTicks);
                 ClawSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 ClawSlides.setPower(1);
-            } else if (gamepad2.y) {
+            } else if (ClawslidesV == 1) {
                 ClawSlides.setTargetPosition(TopBucketSlideTicks);
                 ClawSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 ClawSlides.setPower(1);

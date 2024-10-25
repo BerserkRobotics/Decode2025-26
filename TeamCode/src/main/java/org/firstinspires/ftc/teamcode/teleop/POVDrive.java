@@ -24,7 +24,7 @@ public class POVDrive extends LinearOpMode {
     boolean gamepad2_y_toggle = true;
     //Position for slides and claw for samples/specimens
     int SpecimenPlaceSlideTicks    = 450;
-    int TopBucketSlideTicks        = 2250;
+    int TopBucketSlideTicks        = 1125; //actually low bucket -- need to test
     int PickupSlideTicks           = 10;
     double ClawPositionPivotOpen   = 0.65;
     double ClawPositionPivotClosed = 0.25;
@@ -66,20 +66,20 @@ public class POVDrive extends LinearOpMode {
         //setting right ascent behaviors
         RightAscent.setDirection(DcMotorSimple.Direction.FORWARD);
         RightAscent.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        RightAscent.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        RightAscent.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        RightAscent.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        RightAscent.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         //setting left ascent behaviors
         LeftAscent.setDirection(DcMotorSimple.Direction.FORWARD);
-//        LeftAscent.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        LeftAscent.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 //        LeftAscent.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        LeftAscent.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        LeftAscent.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         //setting claw slides behavior
         ClawSlides.setDirection(DcMotorSimple.Direction.FORWARD);
         ClawSlides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        ClawSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        ClawSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        ClawSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        ClawSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
 
         // Set zero power behavior
@@ -196,7 +196,7 @@ public class POVDrive extends LinearOpMode {
 
             //Ascent program to bring the ascent down if we make a mistake
             if (gamepad2.right_stick_y != 0) {
-                RightAscent.setPower(-gamepad2.right_stick_y);
+                RightAscent.setPower(gamepad2.right_stick_y);
             } else {
                 RightAscent.setPower(0);
             }

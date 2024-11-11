@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
+//TODO: intakearm, intakepivot, delete intakeroller, edit outtake pivot, etc???
+
 @TeleOp(name = "POVDrive")
 public class POVDrive extends LinearOpMode {
     //Motors and Servo initialization
@@ -15,25 +17,36 @@ public class POVDrive extends LinearOpMode {
     private DcMotor BackLeft;
     private DcMotor RightAscent;
     private DcMotor LeftAscent;
-    private DcMotor ClawSlides;
-    private Servo ClawGrab;
-    private Servo ClawPivot;
+    private Servo IntakeRoller;
+    private Servo IntakePivot;
+    private DcMotor IntakeArm;
+    private DcMotor OuttakeSlides;
+    private Servo OuttakePivot;
 
     //opening and closing initialization
     boolean gamepad2_b_toggle = true;
     boolean gamepad2_y_toggle = true;
+
+    //TODO: edit these values
+    //OUTTAKE
     //Position for slides and claw for samples/specimens
     int SpecimenPlaceSlideTicks    = 450;
     int TopBucketSlideTicks        = 1125; //actually low bucket -- need to test
     int PickupSlideTicks           = 10;
-    double ClawPositionPivotOpen   = 0.65;
-    double ClawPositionPivotClosed = 0.25;
-    double ClawPositionClosed      = 0.45;
-    double ClawPositionOpen        = 0.75;
+
+    //TODO: edit these values
+    //TODO: also intake pos in and out might be swapped...
+    //INTAKE
+    double IntakePositionPivotIn = 0.65;
+    double IntakePositionPivotOut = 0.25;
+    double IntakeRollerIn = 1;
+    double IntakeRollerOut = 0;
+    int IntakeArmTicksUp = 100;
+
     boolean gamepad2_y_Last_press  = false;
     boolean gamepad2_b_Last_press  = false;
     boolean gamepad2_a_Last_press  = false;
-    int ClawslidesV                = 0;
+    int OuttakeSlidesV = 0;
     boolean y_toggle               = false;
 
     //Position for ascent slides for hanging
@@ -53,9 +66,11 @@ public class POVDrive extends LinearOpMode {
         RightAscent = hardwareMap.get(DcMotor.class,"RightAscent");
         LeftAscent = hardwareMap.get(DcMotor.class,"LeftAscent");
 
-        ClawSlides = hardwareMap.get(DcMotor.class, "ClawSlides");
-        ClawGrab = hardwareMap.get(Servo.class,"ClawGrab");
-        ClawPivot = hardwareMap.get(Servo.class,"ClawPivot");
+        OuttakeSlides = hardwareMap.get(DcMotor.class, "OuttakeSlides");
+        OuttakePivot = hardwareMap.get(Servo.class,"OuttakePivot");
+        IntakeArm = hardwareMap.get(DcMotor.class,"IntakeArm");
+        IntakeRoller = hardwareMap.get(Servo.class,"IntakeRoller");
+        IntakePivot = hardwareMap.get(Servo.class,"IntakePivot");
 
         // Set motor directions
         FrontRight.setDirection(DcMotor.Direction.REVERSE);
@@ -76,11 +91,17 @@ public class POVDrive extends LinearOpMode {
 //        LeftAscent.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         //setting claw slides behavior
-        ClawSlides.setDirection(DcMotorSimple.Direction.FORWARD);
-        ClawSlides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        ClawSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        ClawSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        OuttakeSlides.setDirection(DcMotorSimple.Direction.FORWARD);
+        OuttakeSlides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        OuttakeSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        OuttakeSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        //TODO: edit direction
+        //setting intake arm
+        IntakeArm.setDirection(DcMotorSimple.Direction.FORWARD);
+        IntakeArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        IntakeArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        IntakeArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         // Set zero power behavior
         FrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -129,37 +150,37 @@ public class POVDrive extends LinearOpMode {
             BackLeft.setPower(back_left_power);
 
 
-
-            //Moving Claw to grab and then pull up and to open and go down
+            //TODO: edit this because need to test with active intake
+            //Moving intake to roll in and then pull up and to roll out and go down
             if (gamepad2_b_toggle) {
-                ClawGrab.setPosition(ClawPositionClosed);
+                IntakeRoller.setPosition(IntakeRollerIn);
             } else if (!gamepad2_b_toggle) {
-                ClawGrab.setPosition(ClawPositionOpen);
+                IntakeRoller.setPosition(IntakeRollerOut);
             }
             if (gamepad2_y_toggle && !y_toggle
             ) {
-                ClawPivot.setPosition(ClawPositionPivotClosed + .05);
+                IntakePivot.setPosition(IntakePositionPivotOut + .05);
                 sleep(150);
-                ClawPivot.setPosition(ClawPositionPivotClosed + .1);
+                IntakePivot.setPosition(IntakePositionPivotOut + .1);
                 sleep(150);
-                ClawPivot.setPosition(ClawPositionPivotClosed + .15);
+                IntakePivot.setPosition(IntakePositionPivotOut + .15);
                 sleep(150);
-                ClawPivot.setPosition(ClawPositionPivotClosed + .20);
+                IntakePivot.setPosition(IntakePositionPivotOut + .20);
                 sleep(150);
-                ClawPivot.setPosition(ClawPositionPivotClosed + .25);
+                IntakePivot.setPosition(IntakePositionPivotOut + .25);
                 sleep(150);
-                ClawPivot.setPosition(ClawPositionPivotClosed + .3);
+                IntakePivot.setPosition(IntakePositionPivotOut + .3);
                 sleep(150);
-                ClawPivot.setPosition(ClawPositionPivotClosed + .35);
+                IntakePivot.setPosition(IntakePositionPivotOut + .35);
                 sleep(150);
-                ClawPivot.setPosition(ClawPositionPivotClosed + .40);
+                IntakePivot.setPosition(IntakePositionPivotOut + .40);
                 y_toggle = true;
             }
             if (!gamepad2_y_toggle) {
-                ClawPivot.setPosition(ClawPositionPivotClosed);
+                IntakePivot.setPosition(IntakePositionPivotOut);
                 y_toggle = false;
             }
-            // Setting toggle for using Claw
+            // Setting toggle for using
             if (gamepad2.b && !gamepad2_b_Last_press) {
                 gamepad2_b_toggle = !gamepad2_b_toggle;
                 sleep(100);
@@ -169,27 +190,27 @@ public class POVDrive extends LinearOpMode {
                 sleep(100);
             }
             if (gamepad2.a && !gamepad2_a_Last_press) {
-                ClawslidesV += 1;
-            } else if (ClawslidesV == 3) {
-                ClawslidesV = 0;
+                OuttakeSlidesV += 1;
+            } else if (OuttakeSlidesV == 3) {
+                OuttakeSlidesV = 0;
             }
             gamepad2_b_Last_press = gamepad2.b;
             gamepad2_y_Last_press = gamepad2.y;
             gamepad2_a_Last_press = gamepad2.a;
 
-//            moving slides to the positions for top bucket and Specimen placing
-            if (ClawslidesV == 0) {
-                ClawSlides.setTargetPosition(PickupSlideTicks);
-                ClawSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                ClawSlides.setPower(1);
-            } else if (ClawslidesV == 2) {
-                ClawSlides.setTargetPosition(SpecimenPlaceSlideTicks);
-                ClawSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                ClawSlides.setPower(1);
-            } else if (ClawslidesV == 1) {
-                ClawSlides.setTargetPosition(TopBucketSlideTicks);
-                ClawSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                ClawSlides.setPower(1);
+            //moving slides to the positions for top bucket and Specimen placing
+            if (OuttakeSlidesV == 0) {
+                OuttakeSlides.setTargetPosition(PickupSlideTicks);
+                OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                OuttakeSlides.setPower(1);
+            } else if (OuttakeSlidesV == 2) {
+                OuttakeSlides.setTargetPosition(SpecimenPlaceSlideTicks);
+                OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                OuttakeSlides.setPower(1);
+            } else if (OuttakeSlidesV == 1) {
+                OuttakeSlides.setTargetPosition(TopBucketSlideTicks);
+                OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                OuttakeSlides.setPower(1);
             }
 
 

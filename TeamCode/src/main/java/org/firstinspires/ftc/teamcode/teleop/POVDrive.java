@@ -43,8 +43,8 @@ public class POVDrive extends LinearOpMode {
     //TODO: edit these values
     //TODO: also intake pos in and out might be swapped...
     //INTAKE
-    double IntakePositionPivotIn = 0.65;
-    double IntakePositionPivotOut = 0.25;
+    double IntakePositionPivotIn = 0.25;
+    double IntakePositionPivotOut = 0.65;
     int IntakeArmTicksUp = 100;
     int IntakeArmTicksDown = -100;
 
@@ -99,15 +99,15 @@ public class POVDrive extends LinearOpMode {
         //setting claw slides behavior
         OuttakeSlides.setDirection(DcMotorSimple.Direction.FORWARD);
         OuttakeSlides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        OuttakeSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        OuttakeSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //OuttakeSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //OuttakeSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         //TODO: edit direction
         //setting intake arm
         IntakeArm.setDirection(DcMotorSimple.Direction.FORWARD);
         IntakeArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        IntakeArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        IntakeArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //IntakeArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //IntakeArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         // Set zero power behavior
         FrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -189,16 +189,19 @@ public class POVDrive extends LinearOpMode {
                 IntakeArm.setTargetPosition(IntakeArmTicksDown);
                 IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 IntakeArm.setPower(.6);
+                IntakeArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             } else if (!gamepad2_x_toggle) {
                 IntakeArm.setTargetPosition(IntakeArmTicksUp);
                 IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 IntakeArm.setPower(.6);
+                IntakeArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             } else {
                 IntakeArm.setPower(0);
             }
 
             //TODO: edit this because need to test with active intake
             //Moving intake to roll in and out
+
             if (gamepad2_b_toggle) { //in
                 IntakeRoller.setPower(1);
             } else if (!gamepad2_b_toggle) { //out
@@ -206,6 +209,7 @@ public class POVDrive extends LinearOpMode {
             } else {
                 IntakeRoller.setPower(0);
             }
+
 
             if (gamepad2_y_toggle && !y_toggle) {
                 IntakePivot.setPosition(IntakePositionPivotIn);

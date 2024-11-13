@@ -186,11 +186,11 @@ public class POVDrive extends LinearOpMode {
             // TODO: edit power
             // Intake arm up and down
             if (gamepad2_x_toggle) {
-                IntakeArm.setTargetPosition(IntakeArmTicksUp);
+                IntakeArm.setTargetPosition(IntakeArmTicksDown);
                 IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 IntakeArm.setPower(.6);
             } else if (!gamepad2_x_toggle) {
-                IntakeArm.setTargetPosition(IntakeArmTicksDown);
+                IntakeArm.setTargetPosition(IntakeArmTicksUp);
                 IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 IntakeArm.setPower(.6);
             } else {
@@ -199,7 +199,6 @@ public class POVDrive extends LinearOpMode {
 
             //TODO: edit this because need to test with active intake
             //Moving intake to roll in and out
-
             if (gamepad2_b_toggle) { //in
                 IntakeRoller.setPower(1);
             } else if (!gamepad2_b_toggle) { //out
@@ -226,17 +225,30 @@ public class POVDrive extends LinearOpMode {
                 OuttakeSlides.setPower(1);
                 sleep(2000);
                 OuttakePivot.setPosition(OuttakePivotDown);
+                sleep(2000);
+                OuttakePivot.setPosition(OuttakePivotUp);
             } else if (OuttakeSlidesV == 2) {
                 OuttakeSlides.setTargetPosition(SpecimenPlaceSlideTicks);
                 OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 OuttakeSlides.setPower(1);
                 sleep(2000);
                 OuttakePivot.setPosition(OuttakePivotDown);
+                sleep(2000);
+                OuttakePivot.setPosition(OuttakePivotUp);
             } else if (OuttakeSlidesV == 1) {
                 OuttakeSlides.setTargetPosition(TopBucketSlideTicks);
                 OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 OuttakeSlides.setPower(1);
                 sleep(2000);
+                OuttakePivot.setPosition(OuttakePivotDown);
+                sleep(2000);
+                OuttakePivot.setPosition(OuttakePivotUp);
+            }
+
+            // lifts/drops outtake bucket in case
+            if (gamepad2.dpad_up) {
+                OuttakePivot.setPosition(OuttakePivotUp);
+            } else if (gamepad2.dpad_down) {
                 OuttakePivot.setPosition(OuttakePivotDown);
             }
 

@@ -37,8 +37,8 @@ public class POVDrive extends LinearOpMode {
     int SpecimenPlaceSlideTicks    = 450;
     int TopBucketSlideTicks        = 1125; //actually low bucket -- need to test
     int PickupSlideTicks           = 10;
-    double OuttakePivotUp          = 1;
-    double OuttakePivotDown        = 0;
+    double OuttakePivotUp          = .5;
+    double OuttakePivotDown        = 1;
 
     //TODO: edit these values
     //TODO: also intake pos in and out might be swapped...

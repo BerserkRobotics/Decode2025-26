@@ -117,41 +117,40 @@ public class NewDrive extends LinearOpMode {
             FrontLeft.setPower(front_left_power);
             BackRight.setPower(back_right_power);
             BackLeft.setPower(back_left_power);
-//
-//            // intake arm
-//
-//            if (gamepad2.dpad_up) {
-//                IntakeArmTicks += 10;
-//                IntakeArm.setPower(1);
-//
-//
-//            } else if (gamepad2.dpad_down) {
-//                IntakeArmTicks -= 10;
-//                IntakeArm.setPower(-1);
-//            }
-//
-//            if (gamepad2.y) {
-//                OuttakeArmTicks += 10;
-//
-//            } else if (gamepad2.a) {
-//                OuttakeArmTicks -= 10;
-//            }
-//
-//            if (gamepad2.left_bumper) {
-//                IntakeRoller.setPower(1);
-//
-//            } else if (gamepad2.left_trigger != 0) {
-//                IntakeRoller.setPower(-1);
-//            } else {
-//                IntakeRoller.setPower(0);
-//            }
-//
-//            if (gamepad2.right_bumper) {
-//                pivot += .1;
-//
-//            } else if (gamepad2.right_trigger != 0) {
-//                pivot -= 1;
-//            }
+
+            // intake arm
+
+              if (gamepad2.dpad_up) {
+                  //stop and reset encoder~~
+                  IntakeArmTicks += 10;
+                  IntakeArm.setPower(1);
+            } else if (gamepad2.dpad_down) {
+                IntakeArmTicks -= 10;
+                IntakeArm.setPower(-1);
+            }
+
+            if (gamepad2.y) {
+                OuttakeArmTicks += 10;
+
+            } else if (gamepad2.a) {
+                OuttakeArmTicks -= 10;
+            }
+
+            if (gamepad2.left_bumper) {
+                IntakeRoller.setPower(1);
+
+            } else if (gamepad2.left_trigger != 0) {
+                IntakeRoller.setPower(-1);
+            } else {
+                IntakeRoller.setPower(0);
+            }
+
+            if (gamepad2.right_bumper) {
+
+
+            } else if (gamepad2.right_trigger != 0) {
+
+            }
 
 
             //Ascent program to bring the ascent down if we make a mistake

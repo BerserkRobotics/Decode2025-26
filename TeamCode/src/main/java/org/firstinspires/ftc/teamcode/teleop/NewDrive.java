@@ -25,7 +25,7 @@ public class NewDrive extends LinearOpMode {
     // INTAKE values
     int IntakeArmTicks = 0;
     int OuttakeArmTicks = 0;
-    float pivot = 0;
+
     @Override
     public void runOpMode() {
         // Initialize motors

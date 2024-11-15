@@ -79,10 +79,10 @@ public class POVDrive extends LinearOpMode {
         IntakePivot = hardwareMap.get(Servo.class,"IntakePivot");
 
         // Set motor directions
-        FrontRight.setDirection(DcMotor.Direction.REVERSE);
-        BackRight.setDirection(DcMotor.Direction.REVERSE);
-        FrontLeft.setDirection(DcMotor.Direction.FORWARD);
-        BackLeft.setDirection(DcMotor.Direction.FORWARD);
+        FrontRight.setDirection(DcMotor.Direction.FORWARD);
+        BackRight.setDirection(DcMotor.Direction.FORWARD);
+        FrontLeft.setDirection(DcMotor.Direction.REVERSE);
+        BackLeft.setDirection(DcMotor.Direction.REVERSE);
 
         //setting right ascent behaviors
         RightAscent.setDirection(DcMotorSimple.Direction.FORWARD);

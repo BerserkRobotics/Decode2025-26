@@ -7,8 +7,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "NewDrive")
-public class NewDrive extends LinearOpMode {
+//TODO: JUST A BACKUP!!
+
+@TeleOp(name = "copyNewDrive")
+public class copyNewDrive extends LinearOpMode {
     //Motors and Servo initialization
     private DcMotor FrontRight;
     private DcMotor BackRight;

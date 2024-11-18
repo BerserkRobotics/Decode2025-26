@@ -9,92 +9,114 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name = "NewDrive")
 public class NewDrive extends LinearOpMode {
-    //Motors and Servo initialization
+    //Wheels
     private DcMotor FrontRight;
     private DcMotor BackRight;
     private DcMotor FrontLeft;
     private DcMotor BackLeft;
+
+    //Hang
     private DcMotor RightAscent;
     private DcMotor LeftAscent;
+
+    //Intake
     private CRServo IntakeRoller;
     private Servo IntakePivot;
     private DcMotor IntakeArm;
+
+    //outtake
     private DcMotor OuttakeSlides;
     private Servo OuttakePivot;
+
 
     // INTAKE values
     int IntakeArmTicks = 0;
     int OuttakeArmTicks = 0;
 
+    // Initializing drive variables
+    double front_left_power  = 0;
+    double front_right_power = 0;
+    double back_left_power   = 0;
+    double back_right_power  = 0;
+    double speedSetter = 1;
+    double turnSpeed = 0;
+    double intakepivot = 0;
+
     @Override
     public void runOpMode() {
-        // Initialize motors
+        // Initialize Wheels
         FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
         BackRight = hardwareMap.get(DcMotor.class, "BackRight");
         FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
         BackLeft = hardwareMap.get(DcMotor.class, "BackLeft");
 
+        //Initialize Hang
         RightAscent = hardwareMap.get(DcMotor.class,"RightAscent");
         LeftAscent = hardwareMap.get(DcMotor.class,"LeftAscent");
 
-        OuttakeSlides = hardwareMap.get(DcMotor.class, "OuttakeSlides");
-        OuttakePivot = hardwareMap.get(Servo.class,"OuttakePivot");
+        //Initialize Intake
         IntakeArm = hardwareMap.get(DcMotor.class,"IntakeArm");
         IntakeRoller = hardwareMap.get(CRServo.class,"IntakeRoller");
         IntakePivot = hardwareMap.get(Servo.class,"IntakePivot");
-        // Set motor directions
+
+        //Initialize Outtake
+        OuttakeSlides = hardwareMap.get(DcMotor.class, "OuttakeSlides");
+        OuttakePivot = hardwareMap.get(Servo.class,"OuttakePivot");
+
+
+        // Set wheel motor directions
         FrontRight.setDirection(DcMotor.Direction.FORWARD);
         BackRight.setDirection(DcMotor.Direction.FORWARD);
         FrontLeft.setDirection(DcMotor.Direction.REVERSE);
         BackLeft.setDirection(DcMotor.Direction.REVERSE);
 
-        // Set zero power behavior
+        //Set hang motor direction
+        RightAscent.setDirection(DcMotorSimple.Direction.FORWARD);
+        LeftAscent.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        //set intake/Outake motor direction
+        IntakeArm.setDirection(DcMotorSimple.Direction.REVERSE);
+        OuttakeSlides.setDirection(DcMotorSimple.Direction.REVERSE);
+
+
+
+
+
+
+
+        // Set wheel zero power behavior
         FrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        //setting right ascent behaviors
-        RightAscent.setDirection(DcMotorSimple.Direction.FORWARD);
+        // Set hang zero power behavior
         RightAscent.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        RightAscent.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        RightAscent.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        //setting left ascent behaviors
-        LeftAscent.setDirection(DcMotorSimple.Direction.FORWARD);
         LeftAscent.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        LeftAscent.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        LeftAscent.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        //setting intake arm
-        IntakeArm.setDirection(DcMotorSimple.Direction.REVERSE);
+        // Set Intake/outtake zero power behavior
         IntakeArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        OuttakeSlides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        //Setting Encoders for Intake/Outtake
         IntakeArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         IntakeArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        OuttakeSlides.setDirection(DcMotorSimple.Direction.REVERSE);
-        OuttakeSlides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         OuttakeSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         OuttakeSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
 
 
+        //setting telemetry
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        // Wait for the game to start (driver presses PLAY)
         waitForStart();
-
-        // Run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            // Initialize motor power variables
-            double front_left_power  = 0;
-            double front_right_power = 0;
-            double back_left_power   = 0;
-            double back_right_power  = 0;
+            double moveSpeed   = -gamepad1.left_stick_y;
+            double strafeSpeed = gamepad1.left_stick_x;
 
-            //setting movement amounts
-            double turnSpeed;
+            //setting Turn
             if (gamepad1.left_bumper) {
                 turnSpeed = -1;
             } else if (gamepad1.right_bumper) {
@@ -102,56 +124,12 @@ public class NewDrive extends LinearOpMode {
             } else {
                 turnSpeed = 0;
             }
-            double moveSpeed   = -gamepad1.left_stick_y;
-            double strafeSpeed = gamepad1.left_stick_x;
-            double speedSetter = 1;
 
             //calculating how to move
             front_left_power  = (moveSpeed + turnSpeed + strafeSpeed) * speedSetter;
             front_right_power = (moveSpeed - turnSpeed - strafeSpeed) * speedSetter;
             back_left_power   = (moveSpeed + turnSpeed - strafeSpeed) * speedSetter;
             back_right_power  = (moveSpeed - turnSpeed + strafeSpeed) * speedSetter;
-
-            // Set motor powers
-            FrontRight.setPower(front_right_power);
-            FrontLeft.setPower(front_left_power);
-            BackRight.setPower(back_right_power);
-            BackLeft.setPower(back_left_power);
-
-            // intake arm
-
-              if (gamepad2.dpad_up) {
-                  //stop and reset encoder~~
-                  IntakeArmTicks += 10;
-                  IntakeArm.setPower(1);
-            } else if (gamepad2.dpad_down) {
-                IntakeArmTicks -= 10;
-                IntakeArm.setPower(-1);
-            }
-
-            if (gamepad2.y) {
-                OuttakeArmTicks += 10;
-
-            } else if (gamepad2.a) {
-                OuttakeArmTicks -= 10;
-            }
-
-            if (gamepad2.left_bumper) {
-                IntakeRoller.setPower(1);
-
-            } else if (gamepad2.left_trigger != 0) {
-                IntakeRoller.setPower(-1);
-            } else {
-                IntakeRoller.setPower(0);
-            }
-
-            if (gamepad2.right_bumper) {
-
-
-            } else if (gamepad2.right_trigger != 0) {
-
-            }
-
 
             //Ascent program to bring the ascent down if we make a mistake
             if (gamepad2.right_stick_y != 0) {
@@ -165,13 +143,20 @@ public class NewDrive extends LinearOpMode {
                 LeftAscent.setPower(0);
             }
 
-//            OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//            IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//
-//
-//            IntakeArm.setTargetPosition(IntakeArmTicks);
-//            OuttakeSlides.setTargetPosition(OuttakeArmTicks);
-//            IntakePivot.setPosition(pivot);
+            // Set motor powers
+            FrontRight.setPower(front_right_power);
+            FrontLeft.setPower(front_left_power);
+            BackRight.setPower(back_right_power);
+            BackLeft.setPower(back_left_power);
+
+            //setting position
+            IntakeArm.setTargetPosition(IntakeArmTicks);
+            OuttakeSlides.setTargetPosition(OuttakeArmTicks);
+            IntakePivot.setPosition(intakepivot);
+
+            //setting run to position
+            OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
             // Update telemetry data

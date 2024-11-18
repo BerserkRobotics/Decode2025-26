@@ -14,16 +14,13 @@ public class NewDrive extends LinearOpMode {
     private DcMotor BackRight;
     private DcMotor FrontLeft;
     private DcMotor BackLeft;
-
     //Hang
     private DcMotor RightAscent;
     private DcMotor LeftAscent;
-
     //Intake
-    private CRServo IntakeRoller;
+    private Servo IntakeRoller;
     private Servo IntakePivot;
     private DcMotor IntakeArm;
-
     //outtake
     private DcMotor OuttakeSlides;
     private Servo OuttakePivot;
@@ -40,7 +37,14 @@ public class NewDrive extends LinearOpMode {
     double back_right_power  = 0;
     double speedSetter = 1;
     double turnSpeed = 0;
-    double intakepivot = 0;
+
+    //initializing position values
+    double OuttakePivotPosition = 0;
+    double IntakeRollerPosition = 0.5;
+    double IntakePivotPosition = 0;
+    int OuttakeArmPosition = 0;
+    int IntakeArmPosition = 0;
+
 
     @Override
     public void runOpMode() {
@@ -56,13 +60,12 @@ public class NewDrive extends LinearOpMode {
 
         //Initialize Intake
         IntakeArm = hardwareMap.get(DcMotor.class,"IntakeArm");
-        IntakeRoller = hardwareMap.get(CRServo.class,"IntakeRoller");
+        IntakeRoller = hardwareMap.get(Servo.class,"IntakeRoller");
         IntakePivot = hardwareMap.get(Servo.class,"IntakePivot");
 
         //Initialize Outtake
         OuttakeSlides = hardwareMap.get(DcMotor.class, "OuttakeSlides");
         OuttakePivot = hardwareMap.get(Servo.class,"OuttakePivot");
-
 
         // Set wheel motor directions
         FrontRight.setDirection(DcMotor.Direction.FORWARD);
@@ -77,12 +80,6 @@ public class NewDrive extends LinearOpMode {
         //set intake/Outake motor direction
         IntakeArm.setDirection(DcMotorSimple.Direction.REVERSE);
         OuttakeSlides.setDirection(DcMotorSimple.Direction.REVERSE);
-
-
-
-
-
-
 
         // Set wheel zero power behavior
         FrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -105,9 +102,11 @@ public class NewDrive extends LinearOpMode {
         OuttakeSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         OuttakeSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        //setting run to position
+        OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-
-        //setting telemetry
+        //telemetry
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
@@ -143,6 +142,15 @@ public class NewDrive extends LinearOpMode {
                 LeftAscent.setPower(0);
             }
 
+            if (gamepad2.right_bumper) {
+                IntakeRollerPosition = 1;
+            } else if (gamepad2.left_bumper) {
+                IntakeRollerPosition = 0;
+            } else {
+                IntakeRollerPosition = 0.5;
+            }
+
+
             // Set motor powers
             FrontRight.setPower(front_right_power);
             FrontLeft.setPower(front_left_power);
@@ -150,13 +158,11 @@ public class NewDrive extends LinearOpMode {
             BackLeft.setPower(back_left_power);
 
             //setting position
-            IntakeArm.setTargetPosition(IntakeArmTicks);
-            OuttakeSlides.setTargetPosition(OuttakeArmTicks);
-            IntakePivot.setPosition(intakepivot);
-
-            //setting run to position
-            OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            IntakeArm.setTargetPosition(IntakeArmPosition);
+            OuttakeSlides.setTargetPosition(OuttakeArmPosition);
+            IntakePivot.setPosition(IntakePivotPosition);
+            IntakeRoller.setPosition(IntakeRollerPosition);
+            OuttakePivot.setPosition(OuttakePivotPosition);
 
 
             // Update telemetry data
@@ -165,6 +171,7 @@ public class NewDrive extends LinearOpMode {
             telemetry.addData("Front Right Power", front_right_power);
             telemetry.addData("Back Left Power", back_left_power);
             telemetry.addData("Back Right Power", back_right_power);
+            telemetry.addData("Position", IntakeRollerPosition);
             telemetry.update();
         }
     }

@@ -25,11 +25,6 @@ public class NewDrive extends LinearOpMode {
     private DcMotor OuttakeSlides;
     private Servo OuttakePivot;
 
-
-    // INTAKE values
-    int IntakeArmTicks = 0;
-    int OuttakeArmTicks = 0;
-
     // Initializing drive variables
     double front_left_power  = 0;
     double front_right_power = 0;
@@ -41,7 +36,7 @@ public class NewDrive extends LinearOpMode {
     //initializing position values
     double OuttakePivotPosition = 0;
     double IntakeRollerPosition = 0.5;
-    double IntakePivotPosition = 0;
+    double IntakePivotPosition = 0.44;
     int OuttakeArmPosition = 0;
     int IntakeArmPosition = 0;
 
@@ -74,12 +69,12 @@ public class NewDrive extends LinearOpMode {
         BackLeft.setDirection(DcMotor.Direction.REVERSE);
 
         //Set hang motor direction
-        RightAscent.setDirection(DcMotorSimple.Direction.FORWARD);
+        RightAscent.setDirection(DcMotorSimple.Direction.REVERSE);
         LeftAscent.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //set intake/Outake motor direction
         IntakeArm.setDirection(DcMotorSimple.Direction.REVERSE);
-        OuttakeSlides.setDirection(DcMotorSimple.Direction.REVERSE);
+        OuttakeSlides.setDirection(DcMotorSimple.Direction.FORWARD);
 
         // Set wheel zero power behavior
         FrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -96,15 +91,14 @@ public class NewDrive extends LinearOpMode {
         OuttakeSlides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         //Setting Encoders for Intake/Outtake
-        IntakeArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         IntakeArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        IntakeArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        OuttakeSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         OuttakeSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        OuttakeSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        //setting run to position
-        OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //setting power
+
 
         //telemetry
         telemetry.addData("Status", "Initialized");
@@ -112,8 +106,9 @@ public class NewDrive extends LinearOpMode {
 
         waitForStart();
         while (opModeIsActive()) {
-            double moveSpeed   = -gamepad1.left_stick_y;
+            double moveSpeed = -gamepad1.left_stick_y;
             double strafeSpeed = gamepad1.left_stick_x;
+
 
             //setting Turn
             if (gamepad1.left_bumper) {
@@ -125,22 +120,14 @@ public class NewDrive extends LinearOpMode {
             }
 
             //calculating how to move
-            front_left_power  = (moveSpeed + turnSpeed + strafeSpeed) * speedSetter;
+            front_left_power = (moveSpeed + turnSpeed + strafeSpeed) * speedSetter;
             front_right_power = (moveSpeed - turnSpeed - strafeSpeed) * speedSetter;
-            back_left_power   = (moveSpeed + turnSpeed - strafeSpeed) * speedSetter;
-            back_right_power  = (moveSpeed - turnSpeed + strafeSpeed) * speedSetter;
+            back_left_power = (moveSpeed + turnSpeed - strafeSpeed) * speedSetter;
+            back_right_power = (moveSpeed - turnSpeed + strafeSpeed) * speedSetter;
 
-            //Ascent program to bring the ascent down if we make a mistake
-            if (gamepad2.right_stick_y != 0) {
-                RightAscent.setPower(gamepad2.right_stick_y);
-            } else {
-                RightAscent.setPower(0);
-            }
-            if (gamepad2.left_stick_y != 0) {
-                LeftAscent.setPower(-gamepad2.left_stick_y);
-            } else {
-                LeftAscent.setPower(0);
-            }
+            //Ascent program
+            LeftAscent.setPower(-gamepad2.left_stick_y);
+            RightAscent.setPower(-gamepad2.right_stick_y);
 
             if (gamepad2.right_bumper) {
                 IntakeRollerPosition = 1;
@@ -148,6 +135,42 @@ public class NewDrive extends LinearOpMode {
                 IntakeRollerPosition = 0;
             } else {
                 IntakeRollerPosition = 0.5;
+            }
+
+//            if (IntakePivotPosition < 0) {
+//                IntakePivotPosition = 0;
+//            } else if (IntakePivotPosition > 1) {
+//                IntakePivotPosition = 1;
+//            } else if (gamepad2.right_trigger != 0) {
+//                IntakePivotPosition += gamepad2.right_trigger * (0.005);
+//            } else if (gamepad2.left_trigger != 0) {
+//                IntakePivotPosition -= gamepad2.left_trigger * (0.005);
+//            }
+
+            if (gamepad2.dpad_up) {
+                IntakeArmPosition = 0;
+            } else if (gamepad2.dpad_down) {
+                IntakeArmPosition = 10;
+            }
+
+            if (OuttakePivotPosition < 0){
+                OuttakePivotPosition = 0;
+            } else if (OuttakePivotPosition > 1){
+                OuttakePivotPosition = 1;
+            } else if (gamepad2.b) {
+                OuttakePivotPosition += 0.01;
+            } else if (gamepad2.x) {
+                OuttakePivotPosition -= 0.01;
+            }
+
+            if (OuttakeArmPosition < 250){
+                OuttakeArmPosition = 250;
+            } else if (OuttakeArmPosition > 2300){
+                OuttakeArmPosition = 2300;
+            } else if (gamepad2.y) {
+                OuttakeArmPosition += 10;
+            } else if (gamepad2.a) {
+                OuttakeArmPosition -= 10;
             }
 
 
@@ -164,6 +187,13 @@ public class NewDrive extends LinearOpMode {
             IntakeRoller.setPosition(IntakeRollerPosition);
             OuttakePivot.setPosition(OuttakePivotPosition);
 
+            //setting run to position
+            OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            OuttakeSlides.setPower(1);
+            IntakeArm.setPower(0.08);
+
 
             // Update telemetry data
             telemetry.addData("Status", "Running");
@@ -171,7 +201,9 @@ public class NewDrive extends LinearOpMode {
             telemetry.addData("Front Right Power", front_right_power);
             telemetry.addData("Back Left Power", back_left_power);
             telemetry.addData("Back Right Power", back_right_power);
-            telemetry.addData("Position", IntakeRollerPosition);
+            telemetry.addData("Outtake Pivot Position",OuttakePivotPosition );
+            telemetry.addData("Outtake slides Position",OuttakeArmPosition );
+
             telemetry.update();
         }
     }

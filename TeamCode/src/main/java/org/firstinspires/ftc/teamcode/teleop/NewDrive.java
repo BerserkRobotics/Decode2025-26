@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -37,7 +36,7 @@ public class NewDrive extends LinearOpMode {
     double OuttakePivotPosition = 0;
     double IntakeRollerPosition = 0.5;
     double IntakePivotPosition = 0.44;
-    int OuttakeArmPosition = 0;
+    int OuttakeSlidesPosition = 0;
     int IntakeArmPosition = 0;
 
 
@@ -97,8 +96,6 @@ public class NewDrive extends LinearOpMode {
         OuttakeSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         OuttakeSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        //setting power
-
 
         //telemetry
         telemetry.addData("Status", "Initialized");
@@ -106,6 +103,7 @@ public class NewDrive extends LinearOpMode {
 
         waitForStart();
         while (opModeIsActive()) {
+
             double moveSpeed = -gamepad1.left_stick_y;
             double strafeSpeed = gamepad1.left_stick_x;
 
@@ -137,40 +135,55 @@ public class NewDrive extends LinearOpMode {
                 IntakeRollerPosition = 0.5;
             }
 
-//            if (IntakePivotPosition < 0) {
-//                IntakePivotPosition = 0;
-//            } else if (IntakePivotPosition > 1) {
-//                IntakePivotPosition = 1;
-//            } else if (gamepad2.right_trigger != 0) {
-//                IntakePivotPosition += gamepad2.right_trigger * (0.005);
-//            } else if (gamepad2.left_trigger != 0) {
-//                IntakePivotPosition -= gamepad2.left_trigger * (0.005);
-//            }
+            if (IntakePivotPosition < 0) {
+                IntakePivotPosition = 0;
+            } else if (IntakePivotPosition > 1) {
+                IntakePivotPosition = 1;
+            } else if (gamepad2.right_trigger != 0) {
+                IntakePivotPosition += gamepad2.right_trigger * (0.005);
+            } else if (gamepad2.left_trigger != 0) {
+                IntakePivotPosition -= gamepad2.left_trigger * (0.005);
+            }
 
+            /*
             if (gamepad2.dpad_up) {
                 IntakeArmPosition = 0;
             } else if (gamepad2.dpad_down) {
                 IntakeArmPosition = 10;
             }
+            */
 
-            if (OuttakePivotPosition < 0){
+            if (IntakeArmPosition < 10) {
+                IntakeArmPosition = 10;
+            } else if (IntakeArmPosition > 20) {
+                IntakeArmPosition = 20;
+            } else if (gamepad2.dpad_up) {
+                IntakeArmPosition += 5;
+            } else if (gamepad2.dpad_down) {
+                IntakeArmPosition -= 5;
+            }
+
+
+            if (OuttakePivotPosition < 0) {
                 OuttakePivotPosition = 0;
-            } else if (OuttakePivotPosition > 1){
+            } else if (OuttakePivotPosition > 1) {
                 OuttakePivotPosition = 1;
+            // up
             } else if (gamepad2.b) {
                 OuttakePivotPosition += 0.01;
+            // down
             } else if (gamepad2.x) {
                 OuttakePivotPosition -= 0.01;
             }
 
-            if (OuttakeArmPosition < 250){
-                OuttakeArmPosition = 250;
-            } else if (OuttakeArmPosition > 2300){
-                OuttakeArmPosition = 2300;
+            if (OuttakeSlidesPosition < 250) {
+                OuttakeSlidesPosition = 250;
+            } else if (OuttakeSlidesPosition > 2300) {
+                OuttakeSlidesPosition = 2300;
             } else if (gamepad2.y) {
-                OuttakeArmPosition += 10;
+                OuttakeSlidesPosition += 10;
             } else if (gamepad2.a) {
-                OuttakeArmPosition -= 10;
+                OuttakeSlidesPosition -= 10;
             }
 
 
@@ -182,7 +195,7 @@ public class NewDrive extends LinearOpMode {
 
             //setting position
             IntakeArm.setTargetPosition(IntakeArmPosition);
-            OuttakeSlides.setTargetPosition(OuttakeArmPosition);
+            OuttakeSlides.setTargetPosition(OuttakeSlidesPosition);
             IntakePivot.setPosition(IntakePivotPosition);
             IntakeRoller.setPosition(IntakeRollerPosition);
             OuttakePivot.setPosition(OuttakePivotPosition);
@@ -192,7 +205,7 @@ public class NewDrive extends LinearOpMode {
             IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             OuttakeSlides.setPower(1);
-            IntakeArm.setPower(0.08);
+            IntakeArm.setPower(0.1);
 
 
             // Update telemetry data
@@ -202,7 +215,7 @@ public class NewDrive extends LinearOpMode {
             telemetry.addData("Back Left Power", back_left_power);
             telemetry.addData("Back Right Power", back_right_power);
             telemetry.addData("Outtake Pivot Position",OuttakePivotPosition );
-            telemetry.addData("Outtake slides Position",OuttakeArmPosition );
+            telemetry.addData("Outtake slides Position", OuttakeSlidesPosition);
 
             telemetry.update();
         }

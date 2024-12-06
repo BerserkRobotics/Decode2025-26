@@ -17,7 +17,8 @@ public class NewDrive extends LinearOpMode {
     private DcMotor RightAscent;
     private DcMotor LeftAscent;
     //Intake
-    private Servo IntakeRoller;
+    private Servo IntakeClaw;
+    //private Servo IntakeRoller;
     private Servo IntakePivot;
     private DcMotor IntakeArm;
     //outtake
@@ -32,9 +33,12 @@ public class NewDrive extends LinearOpMode {
     double speedSetter = 1;
     double turnSpeed = 0;
 
+    //TODO: find claw positions!!!
     //initializing position values
     double OuttakePivotPosition = 0;
-    double IntakeRollerPosition = 0.5;
+    double IntakeClawOpen = 0;
+    double IntakeClawClose = .5;
+    //double IntakeRollerPosition = 0.5;
     double IntakePivotPosition = 0.44;
     int OuttakeSlidesPosition = 0;
     int IntakeArmPosition = 0;
@@ -63,7 +67,8 @@ public class NewDrive extends LinearOpMode {
 
         //Initialize Intake
         IntakeArm = hardwareMap.get(DcMotor.class, "IntakeArm");
-        IntakeRoller = hardwareMap.get(Servo.class, "IntakeRoller");
+        IntakeClaw = hardwareMap.get(Servo.class, "IntakeClaw");
+        //IntakeRoller = hardwareMap.get(Servo.class, "IntakeRoller");
         IntakePivot = hardwareMap.get(Servo.class, "IntakePivot");
 
         //Initialize Outtake

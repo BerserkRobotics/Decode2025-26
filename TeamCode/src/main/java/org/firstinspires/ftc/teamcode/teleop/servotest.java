@@ -36,9 +36,9 @@ public class servotest extends LinearOpMode {
 
             // Update telemetry data
             telemetry.addData("Status", "Running");
-            telemetry.addData("dpad_up", gamepad2.dpad_up);
-            telemetry.addData("dpad_down", gamepad2.dpad_down);
-            telemetry.addData("claw position", IntakeClaw);
+            telemetry.addData("dpad_up: ", gamepad2.dpad_up);
+            telemetry.addData("dpad_down: ", gamepad2.dpad_down);
+            telemetry.addData("claw position: ", IntakeClawPos);
 
 
             telemetry.update();

@@ -29,8 +29,10 @@ public class servotest extends LinearOpMode {
 
             if (gamepad2.dpad_up) {
                 IntakeClawPos += .1;
+                IntakeClaw.setPosition(IntakeClawPos);
             } else if (gamepad2.dpad_down) {
                 IntakeClawPos -= .1;
+                IntakeClaw.setPosition(IntakeClawPos);
             }
 
 

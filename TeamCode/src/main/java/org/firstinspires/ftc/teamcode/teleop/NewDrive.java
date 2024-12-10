@@ -36,8 +36,8 @@ public class NewDrive extends LinearOpMode {
     //TODO: find claw positions!!! edit pivot positions!!!
     //initializing position values
     double OuttakePivotPosition = 0;
-    double IntakeClawOpen = .5;
-    double IntakeClawClose = 1;
+    double IntakeClawOpen = .8;
+    double IntakeClawClose = .5;
     //double IntakeRollerPosition = 0.5;
     double IntakePivotPosition = 0.44;
     int OuttakeSlidesPosition = 0;
@@ -169,7 +169,7 @@ public class NewDrive extends LinearOpMode {
                     IntakeArmPosition = 1000;
                 } else if (IntakeToggle == 0) {
                     IntakeArmPosition = 2050;
-                    IntakePivotPosition = 0.45;
+                    IntakePivotPosition = 0.6;
                 }
 
                 if (gamepad2.b) {
@@ -201,10 +201,10 @@ public class NewDrive extends LinearOpMode {
                 g2y = gamepad2.y;
 
                 if (gamepad2.right_bumper) {
-                    IntakeClaw.setPosition(IntakeClawOpen);
+                    IntakeClaw.setPosition(IntakeClawClose);
                     //IntakeRollerPosition = 1;
                 } else if (gamepad2.left_bumper) {
-                    IntakeClaw.setPosition(IntakeClawClose);
+                    IntakeClaw.setPosition(IntakeClawOpen);
                     //IntakeRollerPosition = 0;
                 }
 
@@ -240,10 +240,10 @@ public class NewDrive extends LinearOpMode {
                     RightAscent.setPower(-gamepad2.right_stick_y);
 
                 if (gamepad2.right_bumper) {
-                    IntakeClaw.setPosition(IntakeClawOpen);
+                    IntakeClaw.setPosition(IntakeClawClose);
                     //IntakeRollerPosition = 1;
                 } else if (gamepad2.left_bumper) {
-                    IntakeClaw.setPosition(IntakeClawClose);
+                    IntakeClaw.setPosition(IntakeClawOpen);
                     //IntakeRollerPosition = 0;
                 }
 

@@ -12,7 +12,7 @@ public class servotest extends LinearOpMode {
     //Intake
     private Servo IntakeClaw;
     //TODO: ADD POSITION VARIABLE, TEST CLAW SERVOS
-    double IntakeClawPos;
+    double IntakeClawPos = 0;
 
     @Override
     public void runOpMode() {
@@ -28,9 +28,9 @@ public class servotest extends LinearOpMode {
         while (opModeIsActive()) {
 
             if (gamepad2.dpad_up) {
-                IntakeClawPos += 1;
+                IntakeClawPos += .1;
             } else if (gamepad2.dpad_down) {
-                IntakeClawPos -= 1;
+                IntakeClawPos -= .1;
             }
 
 

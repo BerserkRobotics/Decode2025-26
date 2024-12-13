@@ -40,7 +40,7 @@ public class simpleautodrive extends LinearOpMode {
       // Put run blocks here.
       while (opModeIsActive()) {
         // Put loop blocks here.
-        move_right(2000);
+        move_right(1350);
       }
     }
   }

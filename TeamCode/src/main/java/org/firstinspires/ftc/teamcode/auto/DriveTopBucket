@@ -69,6 +69,7 @@ public class DriveTopBucket extends LinearOpMode {
     waitForStart();
     if (opModeIsActive()) {
 
+      //strafe right slightly
       BackLeft.setTargetPosition(135);
       BackRight.setTargetPosition(-135);
       FrontLeft.setTargetPosition(-135);

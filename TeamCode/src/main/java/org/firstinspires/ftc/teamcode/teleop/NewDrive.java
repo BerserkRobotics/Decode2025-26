@@ -84,7 +84,7 @@ public class NewDrive extends LinearOpMode {
         RightAscent.setDirection(DcMotorSimple.Direction.REVERSE);
         LeftAscent.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        //set intake/Outake motor direction
+        //set intake/Outtake motor direction
         IntakeArm.setDirection(DcMotorSimple.Direction.REVERSE);
         OuttakeSlides.setDirection(DcMotorSimple.Direction.FORWARD);
 

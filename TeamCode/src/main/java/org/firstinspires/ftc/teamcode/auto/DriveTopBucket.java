@@ -50,6 +50,7 @@ public class DriveTopBucket extends LinearOpMode {
         FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        /*
         OuttakeSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         IntakeArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
@@ -57,6 +58,7 @@ public class DriveTopBucket extends LinearOpMode {
         BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+         */
 
         IntakeArm.setPower(0);
         OuttakeSlides.setPower(0);
@@ -68,6 +70,8 @@ public class DriveTopBucket extends LinearOpMode {
 
         waitForStart();
         if (opModeIsActive()) {
+
+            //TODO: edit this thing -- values are certainly off... heck, does it even drive properly?
 
             //strafe right slightly
             BackLeft.setTargetPosition(135);
@@ -83,18 +87,25 @@ public class DriveTopBucket extends LinearOpMode {
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+            //move outtake pivot & slides w/ intake arm
             OuttakePivot.setPosition(0);
             IntakeArm.setTargetPosition(0);
-            IntakeArm.setPower(1);
-            OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             OuttakeSlides.setTargetPosition(2300);
-            OuttakeSlides.setPower(1);
             OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            OuttakeSlides.setPower(1);
+            IntakeArm.setPower(1);
             sleep(1000);
-            BackLeft.setTargetPosition(0);
-            BackRight.setTargetPosition(-500);
-            FrontLeft.setTargetPosition(0);
-            FrontRight.setTargetPosition(-500);
+
+            //drive to net zone
+            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            BackLeft.setTargetPosition(-1000);
+            BackRight.setTargetPosition(1000);
+            FrontLeft.setTargetPosition(-1000);
+            FrontRight.setTargetPosition(1000);
             BackLeft.setPower(0.5);
             BackRight.setPower(0.5);
             FrontLeft.setPower(0.5);
@@ -103,8 +114,28 @@ public class DriveTopBucket extends LinearOpMode {
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            //move_right(-1850);
             sleep(3000);
+
+            //make a pivot turn on frontright
+            BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            BackLeft.setTargetPosition(500);
+            BackRight.setTargetPosition(-500);
+            FrontLeft.setTargetPosition(500);
+            BackLeft.setPower(0.5);
+            BackRight.setPower(0.5);
+            FrontLeft.setPower(0.5);
+            FrontRight.setPower(0);
+            BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            sleep(3000);
+
+            //move outtake pivot to drop into top bucket
+            //move outtake pivot & slides down
+            OuttakeSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             OuttakePivot.setPosition(0.5);
             sleep(3000);
             OuttakePivot.setPosition(0);
@@ -112,7 +143,6 @@ public class DriveTopBucket extends LinearOpMode {
             OuttakeSlides.setTargetPosition(0);
             OuttakeSlides.setPower(1);
             OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            //move_right(3000);
         }
     }
 }

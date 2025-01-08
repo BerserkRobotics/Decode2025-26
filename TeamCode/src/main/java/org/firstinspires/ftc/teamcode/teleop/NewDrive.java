@@ -37,7 +37,7 @@ public class NewDrive extends LinearOpMode {
     //initializing position values
     double OuttakePivotPosition = 0;
     double IntakeClawOpen = .8;
-    double IntakeClawClose = .5;
+    double IntakeClawClose = .3 ;
     //double IntakeRollerPosition = 0.5;
     double IntakePivotPosition = 0.44;
     int OuttakeSlidesPosition = 0;
@@ -164,9 +164,9 @@ public class NewDrive extends LinearOpMode {
 
                 if (IntakeToggle == 2) {
                     IntakeArmPosition = 500;
-                    IntakePivotPosition = 0.4;
+                    IntakePivotPosition = 0;
                 } else if (IntakeToggle == 1) {
-                    IntakeArmPosition = 1000;
+                    IntakeArmPosition = 1200;
                 } else if (IntakeToggle == 0) {
                     IntakeArmPosition = 2050;
                     IntakePivotPosition = 0.6;
@@ -273,23 +273,6 @@ public class NewDrive extends LinearOpMode {
                         IntakeArmPosition -= 1;
                     }
 
-                    if (OuttakePivotPosition < 0) {
-                        OuttakePivotPosition = 0;
-                    } else if (OuttakePivotPosition > 1) {
-                        OuttakePivotPosition = 1;
-                        // up
-                    } else if (gamepad2.b) {
-                        OuttakePivotPosition += 0.01;
-                        // down
-                    } else if (gamepad2.x) {
-                        OuttakePivotPosition -= 0.01;
-                    }
-
-                    if (gamepad2.y) {
-                        OuttakeSlidesPosition += 10;
-                    } else if (gamepad2.a) {
-                        OuttakeSlidesPosition -= 10;
-                    }
 
                     //IntakeClaw.setPosition(IntakeClawOpen);
                     //IntakeClaw.setPosition(IntakeClawClose);

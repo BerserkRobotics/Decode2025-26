@@ -33,7 +33,6 @@ public class NewDrive extends LinearOpMode {
     double speedSetter = 1;
     double turnSpeed = 0;
 
-    //TODO: find claw positions!!! edit pivot positions!!!
     //initializing position values
     double OuttakePivotPosition = 0;
     double IntakeClawOpen = .8;

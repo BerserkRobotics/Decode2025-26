@@ -70,9 +70,7 @@ public class DriveTopBucket extends LinearOpMode {
 
         waitForStart();
         if (opModeIsActive()) {
-
-            //TODO: edit this thing -- values are certainly off... heck, does it even drive properly?
-
+            
             //strafe right slightly
             BackLeft.setTargetPosition(135);
             BackRight.setTargetPosition(-135);

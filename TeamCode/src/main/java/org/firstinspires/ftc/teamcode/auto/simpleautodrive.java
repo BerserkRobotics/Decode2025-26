@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@Autonomous(name = "simpleautodrive")
+@Autonomous(name = "simpleautodrive", preselectTeleOp = "NewDrive")
 public class simpleautodrive extends LinearOpMode {
 
   private DcMotor BackLeft;

@@ -59,8 +59,11 @@ public class SingleBucketPark extends LinearOpMode {
         BackRight.setPower(0);
         FrontLeft.setPower(0);
         FrontRight.setPower(0);
+
+
         waitForStart();
         if (opModeIsActive()) {
+
             BackLeft.setTargetPosition(450);
             BackRight.setTargetPosition(-450);
             FrontLeft.setTargetPosition(-450);
@@ -73,7 +76,7 @@ public class SingleBucketPark extends LinearOpMode {
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            // Put run blocks here.
+
             OuttakePivot.setPosition(0);
             IntakeArm.setTargetPosition(0);
             IntakeArm.setPower(1);
@@ -82,8 +85,10 @@ public class SingleBucketPark extends LinearOpMode {
             OuttakeSlides.setPower(1);
             OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             sleep(1000);
+
             move_right(-1350);
             sleep(2500);
+
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -101,10 +106,13 @@ public class SingleBucketPark extends LinearOpMode {
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             sleep(1000);
+
             OuttakePivot.setPosition(0.5);
             sleep(1000);
+
             OuttakePivot.setPosition(0);
             sleep(1000);
+
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

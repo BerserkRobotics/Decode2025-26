@@ -16,9 +16,7 @@ public class SingleBucketPark extends LinearOpMode {
     private DcMotor IntakeArm;
     private Servo OuttakePivot;
 
-    /**
-     * This function is executed when this Op Mode is selected from the Driver Station.
-     */
+
     @Override
     public void runOpMode() {
         BackLeft = hardwareMap.get(DcMotor.class, "BackLeft");
@@ -86,7 +84,7 @@ public class SingleBucketPark extends LinearOpMode {
             OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             sleep(1000);
 
-            move_right(-1350);
+            move_fwd(-1350);
             sleep(2500);
 
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -109,7 +107,6 @@ public class SingleBucketPark extends LinearOpMode {
 
             OuttakePivot.setPosition(0.5);
             sleep(1000);
-
             OuttakePivot.setPosition(0);
             sleep(1000);
 
@@ -130,11 +127,13 @@ public class SingleBucketPark extends LinearOpMode {
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             sleep(2000);
+
             OuttakeSlides.setTargetPosition(0);
             OuttakeSlides.setPower(1);
             OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            move_right(4000);
+            move_fwd(4000);
             sleep(4000);
+
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -156,10 +155,7 @@ public class SingleBucketPark extends LinearOpMode {
         }
     }
 
-    /**
-     * Describe this function...
-     */
-    private void move_right(int distance) {
+    private void move_fwd(int distance) {
         BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

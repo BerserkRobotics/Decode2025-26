@@ -62,6 +62,7 @@ public class SingleBucketPark extends LinearOpMode {
         waitForStart();
         if (opModeIsActive()) {
 
+            // strafe right slightly
             BackLeft.setTargetPosition(450);
             BackRight.setTargetPosition(-450);
             FrontLeft.setTargetPosition(-450);
@@ -75,6 +76,7 @@ public class SingleBucketPark extends LinearOpMode {
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+            // move outtake mechanism
             OuttakePivot.setPosition(0);
             IntakeArm.setTargetPosition(0);
             IntakeArm.setPower(1);
@@ -84,9 +86,11 @@ public class SingleBucketPark extends LinearOpMode {
             OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             sleep(1000);
 
+            // drive fwd to basket
             move_fwd(-1350);
             sleep(2500);
 
+            // pivot to the right
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -105,11 +109,13 @@ public class SingleBucketPark extends LinearOpMode {
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             sleep(1000);
 
+            // drop sample in top basket
             OuttakePivot.setPosition(0.5);
             sleep(1000);
             OuttakePivot.setPosition(0);
             sleep(1000);
 
+            // pivot to left
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -128,6 +134,7 @@ public class SingleBucketPark extends LinearOpMode {
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             sleep(2000);
 
+            // lower outtake mechanism
             OuttakeSlides.setTargetPosition(0);
             OuttakeSlides.setPower(1);
             OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -150,6 +157,21 @@ public class SingleBucketPark extends LinearOpMode {
             BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             while (opModeIsActive()) {
             }
         }

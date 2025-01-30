@@ -1,23 +1,23 @@
 /*
     SPDX-License-Identifier: MIT
-
     Copyright (c) 2024 SparkFun Electronics
 */
-package org.firstinspires.ftc.teamcode.teleop;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+package org.firstinspires.ftc.teamcode.auto;
+// package org.firstinspires.ftc.teamcode.teleop;
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+// import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+// import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Servo;
+// import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 /*
  * This OpMode illustrates how to use the SparkFun Qwiic Optical Tracking Odometry Sensor (OTOS)
@@ -29,8 +29,9 @@ import com.qualcomm.robotcore.hardware.Servo;
  *
  * See the sensor's product page: https://www.sparkfun.com/products/24904
  */
-@TeleOp(name = "Sensor: SparkFun OTOS", group = "Sensor")
-@Disabled
+
+@Autonomous(name = "SparkFun AUTO", group = "Sensor")
+
 public class SensorSparkFunOTOS extends LinearOpMode {
     // Create an instance of the sensor
     SparkFunOTOS myOtos;

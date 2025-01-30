@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name = "SingleBucketPark", preselectTeleOp = "NewDrive")
-public class SingleBucketPark extends LinearOpMode {
+@Autonomous(name = "MultiBucketPark", preselectTeleOp = "NewDrive")
+public class MultiBucketPark extends LinearOpMode {
 
     private DcMotor BackLeft;
     private DcMotor BackRight;
@@ -143,6 +143,7 @@ public class SingleBucketPark extends LinearOpMode {
             move_fwd(4000);
             sleep(4000);
 
+            //
             FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

@@ -166,7 +166,7 @@ public class FinalDrive extends LinearOpMode {
 
 
             if (IntakeToggle == 0) {
-                IntakeArmPosition = 2150;
+                IntakeArmPosition = 2100;
                 IntakePivotPosition = 0.05;
                 IntakeClaw.setPosition(IntakeClawOpen);
             } else if (IntakeToggle == 1) {
@@ -199,78 +199,38 @@ public class FinalDrive extends LinearOpMode {
             } else if (IntakeToggle == 7) {
                 OuttakeSlidesPosition = 0;
             }
-
-
-
-            if (gamepad2.b) {
-                OuttakePivotPosition = 0;
-            } else if (gamepad2.x) {
-                OuttakePivotPosition = 0.5;
-            }
-
-            if (gamepad2.y & !g2y) {
-                OuttakeToggle += 1;
-            } else if (gamepad2.a & !g2a) {
-                OuttakeToggle -= 1;
-            }
-
-            if (OuttakeToggle > 1) {
-                OuttakeToggle = 1;
-            } else if (IntakeToggle < 0) {
-                OuttakeToggle = 0;
-            }
-
-            if (OuttakeToggle == 0) {
-                OuttakeSlidesPosition = 0;
-            } else if (OuttakeToggle == 1) {
-                OuttakeSlidesPosition = 2300;
-            }
-            dpaddown = gamepad2.dpad_down;
             dpadup = gamepad2.dpad_up;
-            g2a = gamepad2.a;
-            g2y = gamepad2.y;
 
-            if (gamepad2.right_bumper) {
-                IntakeClaw.setPosition(IntakeClawClose);
+            // Set motor powers
+            FrontRight.setPower(front_right_power);
+            FrontLeft.setPower(front_left_power);
+            BackRight.setPower(back_right_power);
+            BackLeft.setPower(back_left_power);
 
-                //IntakeClaw.setPosition(IntakeClawOpen);
-                //IntakeClaw.setPosition(IntakeClawClose);
-                //IntakeRoller.setPosition(IntakeRollerPosition);
-                //manual
+            //setting position
+            IntakeArm.setTargetPosition(IntakeArmPosition);
+            OuttakeSlides.setTargetPosition(OuttakeSlidesPosition);
+            IntakePivot.setPosition(IntakePivotPosition);
+            OuttakePivot.setPosition(OuttakePivotPosition);
 
+            //setting run to position
+            OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-                // Set motor powers
-                FrontRight.setPower(front_right_power);
-                FrontLeft.setPower(front_left_power);
-                BackRight.setPower(back_right_power);
-                BackLeft.setPower(back_left_power);
-
-                //setting position
-                IntakeArm.setTargetPosition(IntakeArmPosition);
-                OuttakeSlides.setTargetPosition(OuttakeSlidesPosition);
-                IntakePivot.setPosition(IntakePivotPosition);
-                OuttakePivot.setPosition(OuttakePivotPosition);
-
-                //setting run to position
-                OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-                OuttakeSlides.setPower(1);
-                IntakeArm.setPower(0.75);
-                // Update telemetry data
-                telemetry.addData("Status", "Running");
-                telemetry.addData("Front Left Power", front_left_power);
-                telemetry.addData("Front Right Power", front_right_power);
-                telemetry.addData("Pivot Position", IntakePivotPosition);
-                telemetry.addData("Toggle", IntakeToggle);
-                telemetry.addData("Target Position", IntakeArm.getTargetPosition());
-                telemetry.addData("Position", IntakeArm.getCurrentPosition());
-                telemetry.addData("dpad_up", gamepad2.dpad_up);
-                telemetry.addData("dpad_down", gamepad2.dpad_down);
-
-
-                telemetry.update();
+            OuttakeSlides.setPower(1);
+            IntakeArm.setPower(0.75);
+            // Update telemetry data
+            telemetry.addData("Status", "Running");
+            telemetry.addData("Front Left Power", front_left_power);
+            telemetry.addData("Front Right Power", front_right_power);
+            telemetry.addData("Pivot Position", IntakePivotPosition);
+            telemetry.addData("Toggle", IntakeToggle);
+            telemetry.addData("Target Position", IntakeArm.getTargetPosition());
+            telemetry.addData("Position", IntakeArm.getCurrentPosition());
+            telemetry.addData("dpad_up", gamepad2.dpad_up);
+            telemetry.addData("dpad_down", gamepad2.dpad_down);
+            telemetry.update();
             }
         }
     }
-}
+

@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -24,6 +25,8 @@ public class NewDrive extends LinearOpMode {
     //outtake
     private DcMotor OuttakeSlides;
     private Servo OuttakePivot;
+
+    private AnalogInput Potentiometer;
 
     // Initializing drive variables
     double front_left_power = 0;
@@ -72,6 +75,8 @@ public class NewDrive extends LinearOpMode {
         //Initialize Outtake
         OuttakeSlides = hardwareMap.get(DcMotor.class, "OuttakeSlides");
         OuttakePivot = hardwareMap.get(Servo.class, "OuttakePivot");
+
+        Potentiometer = hardwareMap.get(AnalogInput.class, "Potentiometer");
 
         // Set wheel motor directions
         FrontRight.setDirection(DcMotor.Direction.FORWARD);
@@ -180,7 +185,7 @@ public class NewDrive extends LinearOpMode {
                 } else if (IntakeToggle == 1) {
                     IntakeArmPosition = 1200;
                 } else if (IntakeToggle == 0) {
-                    IntakeArmPosition = 2150;
+                    IntakeArmPosition = 2100;
                     IntakePivotPosition = 0.05;
                 }
 
@@ -325,6 +330,8 @@ public class NewDrive extends LinearOpMode {
                 telemetry.addData("dpad_up", gamepad2.dpad_up);
                 telemetry.addData("dpad_down", gamepad2.dpad_down);
                 telemetry.addData("Claw", IntakeClaw.getPosition());
+                telemetry.addData("Pot Voltage", Potentiometer.getVoltage());
+                telemetry.addData("Pot Position", (Potentiometer.getVoltage()/Potentiometer.getMaxVoltage()));
 
 
 

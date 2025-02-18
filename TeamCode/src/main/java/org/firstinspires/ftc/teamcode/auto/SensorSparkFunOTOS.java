@@ -36,10 +36,37 @@ public class SensorSparkFunOTOS extends LinearOpMode {
     // Create an instance of the sensor
     SparkFunOTOS myOtos;
 
+    private DcMotor FrontRight;
+    private DcMotor BackRight;
+    private DcMotor FrontLeft;
+    private DcMotor BackLeft;
+    double front_left_power = 0;
+    double front_right_power = 0;
+    double back_left_power = 0;
+    double back_right_power = 0;
+    double speedSetter = 1;
+    double turnSpeed = 0;
+
+
+
     @Override
     public void runOpMode() throws InterruptedException {
         // Get a reference to the sensor
         myOtos = hardwareMap.get(SparkFunOTOS.class, "sensor_otos");
+        FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
+        BackRight = hardwareMap.get(DcMotor.class, "BackRight");
+        FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
+        BackLeft = hardwareMap.get(DcMotor.class, "BackLeft");
+
+        FrontRight.setDirection(DcMotor.Direction.FORWARD);
+        BackRight.setDirection(DcMotor.Direction.FORWARD);
+        FrontLeft.setDirection(DcMotor.Direction.REVERSE);
+        BackLeft.setDirection(DcMotor.Direction.REVERSE);
+
+        FrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        BackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        FrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        BackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // All the configuration for the OTOS is done in this helper method, check it out!
         configureOtos();
@@ -62,6 +89,32 @@ public class SensorSparkFunOTOS extends LinearOpMode {
             if (gamepad1.x) {
                 myOtos.calibrateImu();
             }
+            double moveSpeed = -gamepad1.left_stick_y;
+            double strafeSpeed = gamepad1.left_stick_x;
+            if (gamepad1.right_trigger != 0) {
+                speedSetter = 0.5;
+            } else {
+                speedSetter = 1;
+            }
+            //setting Turn
+            if (gamepad1.left_bumper) {
+                turnSpeed = -1;
+            } else if (gamepad1.right_bumper) {
+                turnSpeed = 1;
+            } else {
+                turnSpeed = 0;
+            }
+
+            //calculating how to move
+            front_left_power = (moveSpeed + turnSpeed + strafeSpeed) * speedSetter;
+            front_right_power = (moveSpeed - turnSpeed - strafeSpeed) * speedSetter;
+            back_left_power = (moveSpeed + turnSpeed - strafeSpeed) * speedSetter;
+            back_right_power = (moveSpeed - turnSpeed + strafeSpeed) * speedSetter;
+
+            FrontRight.setPower(front_right_power);
+            FrontLeft.setPower(front_left_power);
+            BackRight.setPower(back_right_power);
+            BackLeft.setPower(back_left_power);
 
             // Inform user of available controls
             telemetry.addLine("Press Y (triangle) on Gamepad to reset tracking");
@@ -103,7 +156,7 @@ public class SensorSparkFunOTOS extends LinearOpMode {
         // clockwise (negative rotation) from the robot's orientation, the offset
         // would be {-5, 10, -90}. These can be any value, even the angle can be
         // tweaked slightly to compensate for imperfect mounting (eg. 1.3 degrees).
-        SparkFunOTOS.Pose2D offset = new SparkFunOTOS.Pose2D(0, 0, 0);
+        SparkFunOTOS.Pose2D offset = new SparkFunOTOS.Pose2D(-2.3622, -3.77953, 180);
         myOtos.setOffset(offset);
 
         // Here we can set the linear and angular scalars, which can compensate for

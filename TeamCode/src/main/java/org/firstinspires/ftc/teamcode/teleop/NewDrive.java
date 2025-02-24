@@ -39,7 +39,7 @@ public class NewDrive extends LinearOpMode {
     //initializing position values
     double OuttakePivotPosition = 0;
     double IntakeClawOpen = .8;
-    double IntakeClawClose = .3 ;
+    double IntakeClawClose = .4;
     //double IntakeRollerPosition = 0.5;
     double IntakePivotPosition = 0.44;
     int OuttakeSlidesPosition = 0;

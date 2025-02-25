@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 @TeleOp(name = "NewDrive")
 public class NewDrive extends LinearOpMode {
@@ -26,7 +27,7 @@ public class NewDrive extends LinearOpMode {
     private DcMotor OuttakeSlides;
     private Servo OuttakePivot;
 
-    private AnalogInput Potentiometer;
+    private TouchSensor Claw_Sensor;
 
     // Initializing drive variables
     double front_left_power = 0;
@@ -76,7 +77,7 @@ public class NewDrive extends LinearOpMode {
         OuttakeSlides = hardwareMap.get(DcMotor.class, "OuttakeSlides");
         OuttakePivot = hardwareMap.get(Servo.class, "OuttakePivot");
 
-        Potentiometer = hardwareMap.get(AnalogInput.class, "Potentiometer");
+        Claw_Sensor = hardwareMap.get(TouchSensor.class, "Claw_Sensor");
 
         // Set wheel motor directions
         FrontRight.setDirection(DcMotor.Direction.FORWARD);
@@ -330,8 +331,6 @@ public class NewDrive extends LinearOpMode {
                 telemetry.addData("dpad_up", gamepad2.dpad_up);
                 telemetry.addData("dpad_down", gamepad2.dpad_down);
                 telemetry.addData("Claw", IntakeClaw.getPosition());
-                telemetry.addData("Pot Voltage", Potentiometer.getVoltage());
-                telemetry.addData("Pot Position", (Potentiometer.getVoltage()/Potentiometer.getMaxVoltage()));
 
 
 

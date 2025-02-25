@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 @TeleOp(name = "FinalDrive")
 public class FinalDrive extends LinearOpMode {
@@ -24,6 +25,9 @@ public class FinalDrive extends LinearOpMode {
     //outtake
     private DcMotor OuttakeSlides;
     private Servo OuttakePivot;
+
+    private TouchSensor Claw_Sensor;
+
 
     // Initializing drive variables
     double front_left_power = 0;
@@ -73,6 +77,9 @@ public class FinalDrive extends LinearOpMode {
         OuttakeSlides = hardwareMap.get(DcMotor.class, "OuttakeSlides");
         OuttakePivot = hardwareMap.get(Servo.class, "OuttakePivot");
 
+        Claw_Sensor = hardwareMap.get(TouchSensor.class, "Claw_Sensor");
+
+
         // Set wheel motor directions
         FrontRight.setDirection(DcMotor.Direction.FORWARD);
         BackRight.setDirection(DcMotor.Direction.FORWARD);
@@ -115,7 +122,7 @@ public class FinalDrive extends LinearOpMode {
 
         }
         sleep(500);
-        IntakeArm.setTargetPosition(1200);
+        IntakeArm.setTargetPosition(900);
         IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         IntakeArm.setPower(1);
 
@@ -152,6 +159,8 @@ public class FinalDrive extends LinearOpMode {
             RightAscent.setPower(-gamepad2.right_stick_y);
 
 
+            boolean Claw_Button = Claw_Sensor.isPressed();
+
             if (gamepad2.dpad_up & !dpadup) {
                 IntakeToggle += 1;
             } else if (gamepad2.dpad_down & !dpaddown) {
@@ -159,31 +168,40 @@ public class FinalDrive extends LinearOpMode {
             }
 
             if (IntakeToggle > 7) {
-                IntakeToggle = 0;
-            } else if (IntakeToggle < 0) {
+                IntakeToggle = -1;
+            } else if (IntakeToggle < -1) {
                 IntakeToggle = 7;
             }
 
+            if (IntakeToggle == -1){
+                IntakeArmPosition = 1900;
+                IntakePivotPosition = 0.55;
 
-            if (IntakeToggle == 0) {
+            }else if (IntakeToggle == 0) {
                 IntakeArmPosition = 2100;
                 IntakePivotPosition = 0.05;
                 IntakeClaw.setPosition(IntakeClawOpen);
             } else if (IntakeToggle == 1) {
                 IntakeClaw.setPosition(IntakeClawClose);
+                sleep(750);
+                if (Claw_Button == true) {
+                    IntakeToggle -= 1;
+                } else {
+                    IntakeToggle += 1;
+                }
+
+
             } else if (IntakeToggle == 2) {
                 IntakeArmPosition = 750;
                 IntakePivotPosition = 0.55;
-                if (IntakeArm.getCurrentPosition() == 750 && IntakePivot.getPosition() == 0.55) {
+                if (IntakeArm.getCurrentPosition() == 750) {
                     IntakeClaw.setPosition(IntakeClawOpen);
                 }
-                if (IntakeClaw.getPosition() == IntakeClawOpen) {
-                    IntakeToggle += 1;
-                }
+
             } else if (IntakeToggle == 3) {
+                IntakeClaw.setPosition(IntakeClawClose);
                 IntakeArmPosition = 900;
                 IntakePivotPosition = 0.05;
-                IntakeClaw.setPosition(IntakeClawClose);
             } else if (IntakeToggle == 4) {
                 OuttakeSlidesPosition = 2300;
             } else if (IntakeToggle == 5) {

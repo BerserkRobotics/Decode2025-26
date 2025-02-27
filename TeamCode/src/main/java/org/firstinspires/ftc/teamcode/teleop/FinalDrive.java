@@ -167,55 +167,53 @@ public class FinalDrive extends LinearOpMode {
                 IntakeToggle -= 1;
             }
 
-            if (IntakeToggle > 7) {
-                IntakeToggle = -1;
-            } else if (IntakeToggle < -1) {
-                IntakeToggle = 7;
+            if (IntakeToggle > 6) {
+                IntakeToggle = 0;
+            } else if (IntakeToggle < 0) {
+                IntakeToggle = 6;
             }
 
-            if (IntakeToggle == -1){
-                IntakeArmPosition = 1900;
-                IntakePivotPosition = 0.55;
-
-            }else if (IntakeToggle == 0) {
-                IntakeArmPosition = 2100;
+            if (IntakeToggle == 0){
+                IntakeArmPosition = 1100;
                 IntakePivotPosition = 0.05;
                 IntakeClaw.setPosition(IntakeClawOpen);
-            } else if (IntakeToggle == 1) {
+
+            }else if (IntakeToggle == 1) {
+                IntakeArmPosition = 1950;
+                IntakePivotPosition = 0.05;
+                IntakeClaw.setPosition(IntakeClawOpen);
+
+            } else if (IntakeToggle == 2) {
                 IntakeClaw.setPosition(IntakeClawClose);
                 sleep(750);
-                if (Claw_Button == true) {
-                    IntakeToggle -= 1;
-                } else {
+                if (Claw_Button == false) {
                     IntakeToggle += 1;
+                } else {
+                    IntakeToggle -= 1;
                 }
 
 
-            } else if (IntakeToggle == 2) {
+            } else if (IntakeToggle == 3) {
                 IntakeArmPosition = 750;
                 IntakePivotPosition = 0.55;
                 if (IntakeArm.getCurrentPosition() == 750) {
                     IntakeClaw.setPosition(IntakeClawOpen);
                 }
 
-            } else if (IntakeToggle == 3) {
+            } else if (IntakeToggle == 4) {
                 IntakeClaw.setPosition(IntakeClawClose);
                 IntakeArmPosition = 900;
                 IntakePivotPosition = 0.05;
-            } else if (IntakeToggle == 4) {
-                OuttakeSlidesPosition = 2300;
             } else if (IntakeToggle == 5) {
-                OuttakePivotPosition = 0.5;
-                if (OuttakePivot.getPosition() == 0.5) {
-                    IntakeToggle += 1;
-                }
+                OuttakeSlidesPosition = 2300;
             } else if (IntakeToggle == 6) {
+                OuttakePivotPosition = 0.5;
+                sleep(500);
                 OuttakePivotPosition = 0;
-                if (OuttakePivot.getPosition() <= 0.3) {
+                OuttakeSlidesPosition = 0;
+                if (OuttakeSlides.getCurrentPosition() == 0) {
                     IntakeToggle += 1;
                 }
-            } else if (IntakeToggle == 7) {
-                OuttakeSlidesPosition = 0;
             }
             dpadup = gamepad2.dpad_up;
 
@@ -247,6 +245,8 @@ public class FinalDrive extends LinearOpMode {
             telemetry.addData("Position", IntakeArm.getCurrentPosition());
             telemetry.addData("dpad_up", gamepad2.dpad_up);
             telemetry.addData("dpad_down", gamepad2.dpad_down);
+            telemetry.addData("Claw", Claw_Button);
+
             telemetry.update();
             }
         }

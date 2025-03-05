@@ -186,7 +186,7 @@ public class FinalDrive extends LinearOpMode {
             } else if (IntakeToggle == 2) {
                 IntakeClaw.setPosition(IntakeClawClose);
                 sleep(750);
-                if (Claw_Button == false) {
+                if (Claw_Button) {
                     IntakeToggle += 1;
                 } else {
                     IntakeToggle -= 1;

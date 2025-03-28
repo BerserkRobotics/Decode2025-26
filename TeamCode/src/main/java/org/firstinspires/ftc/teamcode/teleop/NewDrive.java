@@ -236,30 +236,30 @@ public class NewDrive extends LinearOpMode {
                 //manual
 
             } else if (!mode) {
-                    if (gamepad1.right_trigger != 0) {
-                        speedSetter = 0.5;
-                    } else {
-                        speedSetter = 1;
-                    }
-                    //setting Turn
-                    if (gamepad1.left_bumper) {
+                if (gamepad1.right_trigger != 0) {
+                    speedSetter = 0.5;
+                } else {
+                    speedSetter = 1;
+                }
+                //setting Turn
+                if (gamepad1.left_bumper) {
 
-                        turnSpeed = -1;
-                    } else if (gamepad1.right_bumper) {
-                        turnSpeed = 1;
-                    } else {
-                        turnSpeed = 0;
-                    }
+                    turnSpeed = -1;
+                } else if (gamepad1.right_bumper) {
+                    turnSpeed = 1;
+                } else {
+                    turnSpeed = 0;
+                }
 
-                    //calculating how to move
-                    front_left_power = (moveSpeed + turnSpeed + strafeSpeed) * speedSetter;
-                    front_right_power = (moveSpeed - turnSpeed - strafeSpeed) * speedSetter;
-                    back_left_power = (moveSpeed + turnSpeed - strafeSpeed) * speedSetter;
-                    back_right_power = (moveSpeed - turnSpeed + strafeSpeed) * speedSetter;
+                //calculating how to move
+                front_left_power = (moveSpeed + turnSpeed + strafeSpeed) * speedSetter;
+                front_right_power = (moveSpeed - turnSpeed - strafeSpeed) * speedSetter;
+                back_left_power = (moveSpeed + turnSpeed - strafeSpeed) * speedSetter;
+                back_right_power = (moveSpeed - turnSpeed + strafeSpeed) * speedSetter;
 
-                    //Ascent program
-                    LeftAscent.setPower(-gamepad2.left_stick_y);
-                    RightAscent.setPower(-gamepad2.right_stick_y);
+                //Ascent program
+                LeftAscent.setPower(-gamepad2.left_stick_y);
+                RightAscent.setPower(-gamepad2.right_stick_y);
 
                 if (gamepad2.right_bumper) {
                     IntakeClaw.setPosition(IntakeClawClose);
@@ -279,63 +279,63 @@ public class NewDrive extends LinearOpMode {
                 }
                 */
 
-                    if (IntakePivotPosition < 0) {
-                        IntakePivotPosition = 0;
-                    } else if (IntakePivotPosition > 1) {
-                        IntakePivotPosition = 1;
-                    } else if (gamepad2.right_trigger != 0) {
-                        IntakePivotPosition += gamepad2.right_trigger * (0.005);
-                    } else if (gamepad2.left_trigger != 0) {
-                        IntakePivotPosition -= gamepad2.left_trigger * (0.005);
-                    }
+                if (IntakePivotPosition < 0) {
+                    IntakePivotPosition = 0;
+                } else if (IntakePivotPosition > 1) {
+                    IntakePivotPosition = 1;
+                } else if (gamepad2.right_trigger != 0) {
+                    IntakePivotPosition += gamepad2.right_trigger * (0.005);
+                } else if (gamepad2.left_trigger != 0) {
+                    IntakePivotPosition -= gamepad2.left_trigger * (0.005);
+                }
 
-                    if (gamepad2.dpad_up) {
-                        IntakeArmPosition += 1;
-                    } else if (gamepad2.dpad_down) {
-                        IntakeArmPosition -= 1;
-                    }
+                if (gamepad2.dpad_up) {
+                    IntakeArmPosition += 1;
+                } else if (gamepad2.dpad_down) {
+                    IntakeArmPosition -= 1;
+                }
 
 
-                    //IntakeClaw.setPosition(IntakeClawOpen);
-                    //IntakeClaw.setPosition(IntakeClawClose);
-                    //IntakeRoller.setPosition(IntakeRollerPosition);
+                //IntakeClaw.setPosition(IntakeClawOpen);
+                //IntakeClaw.setPosition(IntakeClawClose);
+                //IntakeRoller.setPosition(IntakeRollerPosition);
 
             }
 
-                // Set motor powers
-                FrontRight.setPower(front_right_power);
-                FrontLeft.setPower(front_left_power);
-                BackRight.setPower(back_right_power);
-                BackLeft.setPower(back_left_power);
+            // Set motor powers
+            FrontRight.setPower(front_right_power);
+            FrontLeft.setPower(front_left_power);
+            BackRight.setPower(back_right_power);
+            BackLeft.setPower(back_left_power);
 
-                //setting position
-                IntakeArm.setTargetPosition(IntakeArmPosition);
-                OuttakeSlides.setTargetPosition(OuttakeSlidesPosition);
-                IntakePivot.setPosition(IntakePivotPosition);
-                OuttakePivot.setPosition(OuttakePivotPosition);
+            //setting position
+            IntakeArm.setTargetPosition(IntakeArmPosition);
+            OuttakeSlides.setTargetPosition(OuttakeSlidesPosition);
+            IntakePivot.setPosition(IntakePivotPosition);
+            OuttakePivot.setPosition(OuttakePivotPosition);
 
-                //setting run to position
-                OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            //setting run to position
+            OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-                OuttakeSlides.setPower(1);
-                IntakeArm.setPower(0.75);
-                // Update telemetry data
-                telemetry.addData("Status", "Running");
-                telemetry.addData("Front Left Power", front_left_power);
-                telemetry.addData("Front Right Power", front_right_power);
-                telemetry.addData("Pivot Position", IntakePivotPosition);
-                telemetry.addData("Toggle", IntakeToggle);
-                telemetry.addData("Target Position", IntakeArm.getTargetPosition());
-                telemetry.addData("Position", IntakeArm.getCurrentPosition());
-                telemetry.addData("dpad_up", gamepad2.dpad_up);
-                telemetry.addData("dpad_down", gamepad2.dpad_down);
-                telemetry.addData("Claw", IntakeClaw.getPosition());
-
-
+            OuttakeSlides.setPower(1);
+            IntakeArm.setPower(0.75);
+            // Update telemetry data
+            telemetry.addData("Status", "Running");
+            telemetry.addData("Front Left Power", front_left_power);
+            telemetry.addData("Front Right Power", front_right_power);
+            telemetry.addData("Pivot Position", IntakePivotPosition);
+            telemetry.addData("Toggle", IntakeToggle);
+            telemetry.addData("Target Position", IntakeArm.getTargetPosition());
+            telemetry.addData("Position", IntakeArm.getCurrentPosition());
+            telemetry.addData("dpad_up", gamepad2.dpad_up);
+            telemetry.addData("dpad_down", gamepad2.dpad_down);
+            telemetry.addData("Claw", IntakeClaw.getPosition());
 
 
-                telemetry.update();
-            }
+
+
+            telemetry.update();
         }
     }
+}

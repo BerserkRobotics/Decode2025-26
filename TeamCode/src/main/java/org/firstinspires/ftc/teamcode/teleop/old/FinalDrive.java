@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.teleop;
+package org.firstinspires.ftc.teamcode.teleop.old;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
-@TeleOp(name = "OtherNewDrive")
-public class OtherNewDrive extends LinearOpMode {
+@TeleOp(name = "FinalDrive")
+public class FinalDrive extends LinearOpMode {
     //Wheels
     private DcMotor FrontRight;
     private DcMotor BackRight;
@@ -25,7 +25,6 @@ public class OtherNewDrive extends LinearOpMode {
     //outtake
     private DcMotor OuttakeSlides;
     private Servo OuttakePivot;
-    private Servo IntakeRoll;
 
     private TouchSensor Claw_Sensor;
 
@@ -54,11 +53,6 @@ public class OtherNewDrive extends LinearOpMode {
     boolean mode = true;
     boolean g2a = false;
     boolean g2y = false;
-    boolean g2lb = false;
-    boolean g2rb = false;
-    boolean g2tleft_bumper = false;
-    boolean g2tright_bumper = false;
-    int variable = 0;
 
 
     @Override
@@ -82,7 +76,6 @@ public class OtherNewDrive extends LinearOpMode {
         //Initialize Outtake
         OuttakeSlides = hardwareMap.get(DcMotor.class, "OuttakeSlides");
         OuttakePivot = hardwareMap.get(Servo.class, "OuttakePivot");
-
 
         Claw_Sensor = hardwareMap.get(TouchSensor.class, "Claw_Sensor");
 
@@ -114,6 +107,7 @@ public class OtherNewDrive extends LinearOpMode {
         // Set Intake/outtake zero power behavior
         IntakeArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         OuttakeSlides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         //Setting Encoders for Intake/Outtake
         IntakeArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         IntakeArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -122,20 +116,15 @@ public class OtherNewDrive extends LinearOpMode {
         OuttakeSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //Initialization
-        OuttakeSlides.setTargetPosition(100);
-        OuttakeSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        OuttakeSlides.setPower(1);
-
+        IntakePivot.setPosition(0.75);
         OuttakePivot.setPosition(0.5);
         while (OuttakePivot.getPosition() != 0.5 && IntakePivot.getPosition() != 0.75) {
 
         }
         sleep(500);
-
-        IntakeArm.setTargetPosition(1200);
+        IntakeArm.setTargetPosition(900);
         IntakeArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         IntakeArm.setPower(1);
-
 
 
         //telemetry
@@ -170,76 +159,63 @@ public class OtherNewDrive extends LinearOpMode {
             RightAscent.setPower(-gamepad2.right_stick_y);
 
 
-            if (gamepad2.dpad_right) {
-                variable += 5;
-            } else if (gamepad2.dpad_left) {
-                variable -= 5;
-            }
+            boolean Claw_Button = Claw_Sensor.isPressed();
+
             if (gamepad2.dpad_up & !dpadup) {
                 IntakeToggle += 1;
             } else if (gamepad2.dpad_down & !dpaddown) {
                 IntakeToggle -= 1;
             }
 
-            if (IntakeToggle > 2) {
-                IntakeToggle = 2;
-            } else if (IntakeToggle < 0) {
+            if (IntakeToggle > 6) {
                 IntakeToggle = 0;
+            } else if (IntakeToggle < 0) {
+                IntakeToggle = 6;
             }
 
-
-            if (IntakeToggle == 2) {
-                IntakeArmPosition = 765 + variable;
-                IntakePivotPosition = 0.2;
-            } else if (IntakeToggle == 1) {
-                IntakeArmPosition = 1200 + variable;
-                IntakePivotPosition = 1;
-            } else if (IntakeToggle == 0) {
-                IntakeArmPosition = 1740 + variable;
-                IntakePivotPosition = 1;
-            }
-
-            if (IntakeArm.getCurrentPosition() == 750 && IntakePivot.getPosition() == 0.55) {
+            if (IntakeToggle == 0){
+                IntakeArmPosition = 1100;
+                IntakePivotPosition = 0.05;
                 IntakeClaw.setPosition(IntakeClawOpen);
-            }
 
-            if (gamepad2.b) {
-                OuttakePivotPosition = 0.5;
-            }
+            }else if (IntakeToggle == 1) {
+                IntakeArmPosition = 1950;
+                IntakePivotPosition = 0.05;
+                IntakeClaw.setPosition(IntakeClawOpen);
 
-            if (gamepad2.y & !g2y) {
-                OuttakeSlidesPosition = 2300;
-            } else if (gamepad2.a & !g2a) {
-                OuttakeSlidesPosition = 0;
-                OuttakePivotPosition = 0;
-            }
-
-            dpaddown = gamepad2.dpad_down;
-            dpadup = gamepad2.dpad_up;
-            g2a = gamepad2.a;
-            g2y = gamepad2.y;
-
-
-            if (gamepad2.x & !g2lb) {
-                g2tleft_bumper = !g2tleft_bumper;
-            }
-            if (g2tleft_bumper) {
-                IntakeRoll.setPosition(0.8);
-            } else {
-                IntakeRoll.setPosition(0.5);
-            }
-
-            if (gamepad2.right_bumper & !g2rb) {
-                g2tright_bumper = !g2tright_bumper;
-            }
-            if (g2tright_bumper) {
+            } else if (IntakeToggle == 2) {
                 IntakeClaw.setPosition(IntakeClawClose);
-            } else {
-                IntakeClaw.setPosition(IntakeClawOpen);
-            }
+                sleep(750);
+                if (Claw_Button) {
+                    IntakeToggle += 1;
+                } else {
+                    IntakeToggle -= 1;
+                }
 
-            g2rb = gamepad2.right_bumper;
-            g2lb = gamepad2.x;
+
+            } else if (IntakeToggle == 3) {
+                IntakeArmPosition = 750;
+                IntakePivotPosition = 0.55;
+                if (IntakeArm.getCurrentPosition() == 750) {
+                    IntakeClaw.setPosition(IntakeClawOpen);
+                }
+
+            } else if (IntakeToggle == 4) {
+                IntakeClaw.setPosition(IntakeClawClose);
+                IntakeArmPosition = 900;
+                IntakePivotPosition = 0.05;
+            } else if (IntakeToggle == 5) {
+                OuttakeSlidesPosition = 2300;
+            } else if (IntakeToggle == 6) {
+                OuttakePivotPosition = 0.5;
+                sleep(500);
+                OuttakePivotPosition = 0;
+                OuttakeSlidesPosition = 0;
+                if (OuttakeSlides.getCurrentPosition() == 0) {
+                    IntakeToggle += 1;
+                }
+            }
+            dpadup = gamepad2.dpad_up;
 
             // Set motor powers
             FrontRight.setPower(front_right_power);
@@ -269,12 +245,10 @@ public class OtherNewDrive extends LinearOpMode {
             telemetry.addData("Position", IntakeArm.getCurrentPosition());
             telemetry.addData("dpad_up", gamepad2.dpad_up);
             telemetry.addData("dpad_down", gamepad2.dpad_down);
-            telemetry.addData("Claw", IntakeClaw.getPosition());
-
-
-
+            telemetry.addData("Claw", Claw_Button);
 
             telemetry.update();
+            }
         }
     }
-}
+

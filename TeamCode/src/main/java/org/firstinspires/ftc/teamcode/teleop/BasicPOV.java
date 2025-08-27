@@ -36,17 +36,12 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp(name = "BasicPOV")
 public class BasicPOV extends LinearOpMode {
-    // Declare OpMode members.
     private DcMotor FrontLeft;
     private DcMotor FrontRight;
     private DcMotor BackLeft;
     private DcMotor BackRight;
 
 
-
-    /*
-     * Code to run ONCE when the driver hits INIT
-     */
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
